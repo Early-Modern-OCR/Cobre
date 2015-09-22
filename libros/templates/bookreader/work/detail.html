@@ -1,0 +1,119 @@
+{% extends "book_base.html" %}
+
+{% block main_content %}	
+	
+	<dl id="metadata-block">
+		{% if book.creator %}
+		<dt class="metadata-key">Author</dt>
+		<dd class="metadata-val">{{ book.creator }}</dd>
+		{% endif %}
+		
+		{% if book.created %}
+		<dt class="metadata-key">Published</dt>
+		<dd class="metadata-val">{{ book.created }}</dd>
+		{% endif %}
+		
+		<dt class="metadata-key">Collection</dt>
+		<dd class="metadata-val">{{ book.collection.name }}</dd>
+
+		<dt class="metadata-key">Repository</dt>
+		<dd class="metadata-val">{{ book.collection.repository.name }}</dd>
+		
+		{% for key,values in book.additional_metadata.iterlists %}
+		{% if key != "offset" and key != "other subject" %}
+		<dt class="metadata-key">{{ key|title }}</dt>
+		<dd class="metadata-val">
+		{% if values|length > 1 %}
+		{% for value in values %}<div>{{ value }}</div>{% endfor %}
+		{% else %}
+		{{ values|first }}
+		{% endif %}
+		</dd>
+		{% endif %}
+		{% endfor %}
+	</dl>
+	
+	
+	{% comment %} Here is given the proper hierarchy with canonical versions at the top.  Below this comment block is the flattened version.
+	
+	{% if book.get_canonical_manifestations %}
+	<h3>Canonical Copies</h3>
+	<ul id="work-manifestations-canonical">
+	{% for canonical in book.get_canonical_manifestations %}
+		<li>
+			<a href="{% url bookreader-book canonical.pk %}">{{ canonical.title }}</a>
+			{% if canonical.copies.count > 0 %}
+			{% regroup canonical.copies.all by get_type_display as copy_groups %}
+			{% for group in copy_groups %}
+			<h4>{{ group.grouper|title }}</h4>
+			<ul class="copy-{{ group.grouper|lower }}">
+				{% for copy in group.list %}
+				<li><a href="{% url bookreader-book copy.pk %}">{{ copy.title }}</a></li>
+				{% endfor %}
+			</ul>
+			{% endfor %}
+			{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+	{% endif %}
+	{% if book.get_unassociated_manifestations.count > 0 %}
+	{% regroup book.get_unassociated_manifestations by get_type_display as manifestation_group %}
+	{% for group in manifestation_group %}
+	<h3>{{ group.grouper|title }}</h3>
+	<ul id="work-manifestations-{{ group.grouper|lower }}">
+		{% for manifestation in group.list %}
+		<li><a href="{% url bookreader-book manifestation.pk %}">{{ manifestation.title }}</a></li>
+		{% endfor %}
+	</ul>
+	{% endfor %}
+	{% endif %}
+	
+	{% endcomment %}
+	
+	
+	{% if book.get_extant_manifestations.count > 0 %}
+		{% if book.get_extant_manifestations.count > 1 %}
+			<h4>Existing Copies</h4>
+		{% else %}
+			<h4>Existing Copy</h4>
+		{% endif %}
+		<ul>
+		{% for extant in book.get_extant_manifestations %}
+			<li>
+				<a href="{% url bookreader-book extant.pk %}">{{ extant.title }}</a>			
+			</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+
+	{% if book.get_canonical_manifestations.count > 0  and user.is_authenticated %}
+		{% if book.get_canonical_manifestations.count > 1 %}
+			<h4>Canonical Copies</h4>
+		{% else %}
+			<h4>Canonical Copy</h4>
+		{% endif %}	
+		{% for canonical in book.get_canonical_manifestations %}
+		<ul id="work-manifestations-canonical">
+			<li><a href="{% url bookreader-book canonical.pk %}">{{ canonical.title }}</a></li>
+		</ul>
+		{% endfor %}
+	{% endif %}	
+	
+	{% if book.get_frankenbook_manifestations.count > 0 %}
+		{% if book.get_frankenbook_manifestations.count > 1 %}
+			<h4>Frankenbooks</h4>
+		{% else %}
+			<h4>Frankenbook</h4>
+		{% endif %}
+		<ul>
+			{% for frankenbook in book.get_frankenbook_manifestations %}
+			<li>
+				<a href="{% url bookreader-book frankenbook.pk %}">{{ frankenbook.title }}</a>			
+			</li>
+			{% endfor %}
+		</ul>
+	{% endif %}	
+
+	
+{% endblock %}

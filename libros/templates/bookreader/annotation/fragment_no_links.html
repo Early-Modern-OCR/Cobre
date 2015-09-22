@@ -1,0 +1,32 @@
+{% if annotation %}{% spaceless %}
+<li>
+	<div>
+		<span class="annotation-text">{{ annotation.text }}</span>
+		<span class="annotation-pages">{% if annotation.end != annotation.offset %}{{ annotation.offset }}-{{ annotation.end }}{% else %}{{ annotation.offset }}{% endif %}</span>
+	</div>
+	{% if annotation.children and annotation.children|length > 0 %}
+	<ul>
+		{% for child in annotation.children %}
+		<li>
+			<div>
+				<span class="annotation-text">{{ child.text }}</span>
+				<span class="annotation-pages">{% if child.end != child.offset %}{{ child.offset }}-{{ child.end }}{% else %}{{ child.offset }}{% endif %}</span>
+			</div>
+			{% if child.children and child.children|length > 0 %}
+			<ul>
+				{% for subchild in child.children %}
+				<li>
+					<div>
+						<span class="annotation-text">{{ subchild.text }}</span>
+						<span class="annotation-pages">{% if subchild.end != subchild.offset %}{{ subchild.offset }}-{{ subchild.end }}{% else %}{{ subchild.offset }}{% endif %}</span>
+					</div>
+				</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+</li>
+{% endspaceless %}{% endif %}

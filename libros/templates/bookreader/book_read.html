@@ -1,0 +1,52 @@
+{% extends "book_base.html" %}
+{% load bookreader_djatoka %}
+
+{# TODO:  change to reading.min.js below after having re-minified the current reading.js #}
+{% block head_javascript %}
+{{ block.super }}
+<script type="text/javascript" src="/theme/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="/theme/js/reading.js"></script>
+{% endblock %}
+
+{% block breadcrumb %}{{ block.super }} &rarr; Reading View{% endblock %}
+
+{% block main_content %}	
+	
+	<div id="metadata-block">
+		<div class="metadata-row">
+			<span class="metadata-key">Author:</span>
+			<span class="metadata-val">{{ book.creator }}</span>
+		</div>
+	</div>
+	
+	<div class="clearall"></div>
+	<div id="pages-wrapper">
+	{% for page in object_list %}
+	{% if page %}
+	<div class="page-div">
+		{% if forloop.first and page_obj.has_previous %}
+		<div class="loading-reading-page">Loading Reading Page...</div>
+		<a href="?page={{ page_obj.previous_page_number }}" class="page-nav page-nav-previous">
+			{% include "bookreader/page/reading.html" %}
+		</a>
+		{% else %}
+		{% if forloop.last and page_obj.has_next %}
+		<div class="loading-reading-page">Loading Reading Page...</div>
+		<a href="?page={{ page_obj.next_page_number }}" class="page-nav page-nav-next"> 
+			{% include "bookreader/page/reading.html" %}
+		</a>
+		{% else %}
+		{% include "bookreader/page/reading.html" %}
+		{% endif %}
+		{% endif %}
+		<div class="reading-page-metadata">
+			<a href="{% url bookreader-book-pages object_id=book.pk %}?page={{ page.pk }}" title="Detailed view of this page" class="detailed-view reading-detailed-view">
+				Detailed view of this page
+			</a>
+			<span class="page-title">{{ page.safe_title }}</span>
+		</div>
+	</div>
+	{% endif %}
+	{% endfor %}
+	</div>
+{% endblock %}

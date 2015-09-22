@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+
+{% block breadcrumb %} &rarr; Add Book{% endblock %}
+
+{% block main_heading %}
+<h1>Add a Book</h1>
+{% endblock %}
+
+{% block main_content %}
+<form method="POST">{% csrf_token %}
+
+{{ form.as_p }}
+
+<input type="submit" value="Add" />
+</form>
+{% endblock %}

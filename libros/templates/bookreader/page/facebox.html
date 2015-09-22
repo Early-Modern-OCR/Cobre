@@ -1,0 +1,31 @@
+{% load bookreader_djatoka %}
+{% spaceless %}
+
+
+<div class="pageImage" id="pageImage_{{ page.pk }}">
+	<img src="{% djatoka_resolver_url page.jp2 svc.scale=svc.scale.value %}" class="pageImage" />
+	<ul class="pageImageActions">
+		<li class="detailed-view"><a href="{% url bookreader-book-pages page.book.pk %}?page={{ page.pk }}" class="detailed-view" title="Detailed view of this page">Detailed view of this page</a></li>
+		<li class="expand"><a href="#" class="expand" title="Compare with other pages">Compare with other pages</a></li>
+		<li class="contract"><a href="#" class="contract" title="See only this page">See only this page</a></li>
+	</ul>
+	
+	
+	<div id="facebox-transcriptions-{{ page.pk }}" class="facebox-transcriptions-div">
+		<h4>Transcriptions</h4>
+		{% if perms.bookreader.add_transcription %}
+		<img class="add_transcription_facebox_icon" alt="Transcribe this page" href="{% url bookreader-page-add-transcription page.pk %}"/>
+		{% endif %}
+		<div class="facebox-transcriptions-nav">
+			<span class="facebox-transcriptions-previous">(Previous) </span> / {% comment %}<span class="current">1</span> of <span class="max">{{page.transcriptions.count}}</span> {% endcomment %} <span class="facebox-transcriptions-next"> (Next)</span>
+		</div>
+		{% for tr in page.transcriptions.all %}
+			<div class="transcription-facebox-text {% if forloop.first %}current-transcription{% endif %}" id="transcription-text-{{tr.pk}}" author_id="{{tr.author.pk}}" vetted="{{tr.vetted}}">
+				(<span class="trans-author">{{tr.author.first_name }} {{tr.author.last_name }}</span>)
+				<span class="trans-text">{{tr.text}}</span>
+			</div>			
+		{% endfor %}
+	</div>
+	
+</div>
+{% endspaceless %}

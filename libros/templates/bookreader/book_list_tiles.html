@@ -1,0 +1,38 @@
+{% load bookreader_djatoka %}
+
+{% if book_list %}
+	<div id="book-list">
+    {% for book in book_list %}
+        <div class="book-tile">
+			<div class="book-thumbnail">
+				<a href="{% url bookreader-book book.pk %}">
+					{% if book.thumbnail_url %}
+					<img class="book-thumbnail-image" src="{{ book.thumbnail_url }}" />
+					{% else %}
+					{% if book.first_page %}
+					{% if book.first_page.thumbnail %}
+					<img class="book-thumbnail-image" src="{{ book.first_page.thumbnail }}" />
+					{% else %}
+					<img class="book-thumbnail-image" src="{% djatoka_resolver_url book.first_page.jp2 svc.scale=150 %}" />
+					{% endif %}
+					{% endif %}
+					{% endif %}
+				</a></div>
+			<div class="book-info">
+				<div class="book-title">{{ book.title }}</div>
+				<div class="book-desc">{{ book.creator }} ({{ book.created }})</div>
+				<div class="book-links">
+					<p>Explore:</p>
+					<ul>
+						<li><a href="{% url bookreader-book book.pk %}">Book Details</a></li>
+						<li><a href="{% url bookreader-book-read book.pk %}">Read book</a></li>
+						<li><a href="{% url bookreader-book-pages book.pk %}">View all pages</a></li>
+					</ul>
+				</div>
+			</div>				
+		</div>
+    {% endfor %}
+	</div>
+{% else %}
+    <p class="callout">No books are available.</p>
+{% endif %}

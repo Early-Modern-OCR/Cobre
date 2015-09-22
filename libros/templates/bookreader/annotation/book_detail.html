@@ -1,0 +1,16 @@
+{% if book.top_level_structure|length > 0 %}
+<h2>Table of Contents</h2>
+<ul id="structural-annotations" class="annotations">
+	{% for annotation in book.top_level_structure %}
+	{% include "bookreader/annotation/fragment_no_links.html" %}
+	{% endfor %}
+</ul>
+{% endif %}
+{% if book.non_structural_annotations|length > 0 %}
+<h2>Index</h2>
+<ul id="non-structural-annotations" class="annotations">
+	{% for annotation in book.non_structural_annotations %}
+	{% include "bookreader/annotation/fragment_no_links.html" %}
+	{% endfor %}
+</ul>
+{% endif %}

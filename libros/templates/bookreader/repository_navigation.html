@@ -1,0 +1,9 @@
+{% if repository %}
+<div class="option-group">
+	<h3>{{ repository.name }}</h3>
+	<ul>
+		<li><a href="{% url bookreader-repository object_id=repository.pk %}">Collections</a></li>
+		<li><a href="{% url bookreader-repository-books object_id=repository.pk %}">Books</a></li>
+	</ul>
+</div>
+{% endif %}

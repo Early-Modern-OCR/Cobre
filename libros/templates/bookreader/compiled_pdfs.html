@@ -1,0 +1,29 @@
+{% extends "book_base.html" %}
+
+{% block main_content %}	
+
+	<div>Request PDFs</div>
+		
+	<dl id="pdf-options">
+		<dt class="metadata-key">Mobile (50dpi)</dt>
+		<dd class="metadata-val"><a href="{% url bookreader-book-pdf-compile book.pk %}?size=mobile">Request PDF</a></dd>
+		
+		<dt class="metadata-key">Small (72dpi)</dt>
+		<dd class="metadata-val"><a href="{% url bookreader-book-pdf-compile book.pk %}?size=small">Request PDF</a></dd>
+		
+		<dt class="metadata-key">Medium (300dpi)</dt>
+		<dd class="metadata-val"><a href="{% url bookreader-book-pdf-compile book.pk %}?size=medium">Request PDF</a></dd>
+		
+		<dt class="metadata-key">Full derivative (400dpi)</dt>
+		<dd class="metadata-val"><a href="{% url bookreader-book-pdf-compile book.pk %}?size=original">Request PDF</a></dd>
+		
+		<!-- Could check for the existence of a PDF in that size (need a helper function in pdf.py and a way to call it) ->		
+		{% if book.canonical %}
+		<dt class="metadata-key">Canonical Version</dt>
+		<dd class="metadata-val"><a href="{% url bookreader-book object_id=book.canonical.pk %}">{{ book.canonical.title }}</a></dd>
+		{% endif %}
+		-->		
+	</dl>
+	
+</div>
+{% endblock %}

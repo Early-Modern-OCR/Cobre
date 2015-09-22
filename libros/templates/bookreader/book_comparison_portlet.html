@@ -1,0 +1,21 @@
+{% spaceless %}
+{% if compare %}
+{% load bookreader_compare %}
+<div class="portlet portlet-right" id="portlet-compare">
+	<h3>Compare Books</h3>
+	<ul class="books">
+		{% for book in compare %}
+		<li>
+			<a href="{% url bookreader-book-remove-compare book.pk %}" class="comparison">-</a>&nbsp;
+			<a href="{% url bookreader-book book.pk %}">{{ book.title }}</a>
+		</li>
+		{% endfor %}
+	</ul>
+	{% if compare|length > 1 %}
+	<div class="buttons">
+		<a href="{% url bookreader-book-compare %}?{% current_book_args %}" class="button">Compare</a>
+		<a href="{% url bookreader-book-reset-compare %}" class="button comparison">Reset</a>
+	</div>
+	{% endif %}
+</div>
+{% endif %}{% endspaceless %}

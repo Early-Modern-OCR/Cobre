@@ -1,0 +1,17 @@
+<div id="page_transcriptions_{{ page.pk }}">
+	<h1>{{ page.safe_title|title }}</h1>
+	{% with page.transcriptions as transcriptions %}
+	{% if transcriptions|length > 0 %}
+	<ul>
+		{% for transcription in transcriptions %}
+		<li>
+			
+			{{ transcription.text }}
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<div>No transcriptions for this page.</div>
+	{% endif %}
+	{% endwith %}
+</div>

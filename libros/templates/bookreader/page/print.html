@@ -1,0 +1,10 @@
+{% load bookreader_djatoka %}
+<html>
+<body>
+{% if page.jp2 %}
+<img src="{% djatoka_resolver_url page.jp2  svc.scale=1.0 %}" />
+{% else %}
+<div>This is not a valid page for printing.</div>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,86 @@
+{% extends "book_base.html" %}
+{% load bookreader_djatoka %}
+
+{% block head_styles %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="/theme/css/jquery-ui-1.8.4.custom.css" />
+<link rel="stylesheet" type="text/css" href="/theme/css/facebox.css" />
+<link rel="stylesheet" type="text/css" href="/theme/css/filmstrip.css" />
+{% endblock %}
+
+{% block head_javascript %}
+{{ block.super }}
+
+<script type="text/javascript" src="/theme/js/jquery-ui.min.js"></script>
+<!--<script type="text/javascript" src="/theme/js/jquery.filmstrip.combined.min.js"></script>-->
+<script type="text/javascript" src="/theme/js/jquery.scrollTo-1.4.2.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.serialScroll.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.filmstrip.js"></script>
+<script type="text/javascript" src="/theme/js/facebox.min.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	jQuery('.pages').filmstrip({
+		slideshow: true,
+		serialScroll: {offset: -58}
+	});
+	
+	jQuery('.annotations a').click(function(event) {
+		event.preventDefault();
+		jQuery('.pages').serialScroll('jump', parseInt($(this).attr('href').replace('#','')) + 6);
+	});
+
+	jQuery('.pages a').click(function(event) {
+		event.preventDefault();
+		if (jQuery('.filmstripWrapper').hasClass('running')) {
+			jQuery('.slideshowControl').click();
+		}
+	});
+	
+	jQuery('.pages a').facebox({opacity: 0.75});
+});
+</script>
+{% endblock %}
+
+{% block breadcrumb %}{{ block.super }} &rarr; Canonical{% endblock %}
+
+{% block main_content %}
+{% if book.canonical and book.type != "canonical" %}
+<h2>Canonical Form</h2>
+<ul class="pages" id="{{ book.canonical.identifier|slugify }}-pages">
+	{% for page in book.canonical.pages.all %}
+	{% include "bookreader/filmstrip/annotation.html" %}
+	{% endfor %}
+</ul>
+{% else %}
+{% if book.type == "canonical" %}
+<h2>Canonical Form</h2>
+{% endif %}
+{% endif %}
+<ul class="pages" id="{{ book.identifier|slugify }}-pages">
+	{% for page in book.pages.all %}
+	{% include "bookreader/filmstrip/annotation.html" %}
+	{% endfor %}
+</ul>
+{% if book.copies.count > 0 %}
+<h2>Copies</h2>
+<ul>
+	{% for copy in book.copies.all %}
+	<li><a href="{% url bookreader-book-canonical copy.pk %}">{{ copy.title }}</a></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% include "bookreader/annotation/book.html" %}
+{% if book.canonical %}
+<h1>Canoncial Contents</h1>
+{% with book.canonical as book %}
+{% include "bookreader/annotation/book.html" %}
+{% endwith %}
+{% endif %}
+{% for page in book.pages.all %}
+{% if page.annotations|length > 0 %}
+<div id="page_{{ page.pk }}_annotations" style="display: none;" class="annotations-dialog">{% include "bookreader/annotation/page.html" %}</div>
+{% endif %}
+{% endfor %}
+{% endblock %}

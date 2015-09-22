@@ -1,0 +1,21 @@
+<div id="page_annotations_{{ page.pk }}">
+	<h1>{{ page.safe_title|title }}</h1>
+	{% with page.annotations as annotations %}
+	{% if annotations|length > 0 %}
+	<ul>
+		{% for annotation in annotations %}
+		<li>
+			{% if annotation.length > 1 %}
+			Pages {{ annotation.offset }} - {{ annotation.end }}:
+			{% else %}
+			Page {{ annotation.offset }}:
+			{% endif %}
+			{{ annotation.text }}
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<div>No annotations for this page.</div>
+	{% endif %}
+	{% endwith %}
+</div>

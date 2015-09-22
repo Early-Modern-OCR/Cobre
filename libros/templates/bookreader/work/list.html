@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+
+{% block breadcrumb %}
+{% if collection %}
+{% if collection.repository %}<a href="{% url bookreader-repository collection.repository.pk %}">{{ collection.repository }}</a> &rarr;{% endif %}
+<a href="{% url bookreader-collection collection.pk %}">{{ collection }}</a> &rarr; Titles
+{% else %}
+{% if repository %}
+<a href="{% url bookreader-repository repository.pk %}">{{ repository }}</a> &rarr; Titles
+{% else %}
+Browse Titles
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block left_column_content %}
+{{ block.super }}
+{% if collection %}
+{% with collection.repository as repository %}
+{% include "bookreader/repository_navigation.html" %}
+{% endwith %}
+{% include "bookreader/collection_navigation.html" %}
+{% else %}
+{% if repository %}
+{% include "bookreader/repository_navigation.html" %}
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block main_heading %}<h1>Titles</h1>{% endblock %}
+
+{% block main_content %}
+{% if list_template %}
+{% include list_template %}
+{% else %}
+{% include "bookreader/work/list_simple.html" %}
+{% endif %}
+{% endblock %}

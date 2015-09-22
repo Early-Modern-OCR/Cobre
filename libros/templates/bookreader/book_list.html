@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+
+{% block breadcrumb %}
+Browse Books
+{%endblock %}
+
+
+{% block main_heading %}<h1>Books</h1>{% endblock %}
+
+{% block main_content %}
+{% if list_template %}
+{% include list_template %}
+{% else %}
+{% include "bookreader/book_list_simple.html" %}
+{% endif %}
+{% endblock %}

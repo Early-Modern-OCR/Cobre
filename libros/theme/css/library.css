@@ -1,0 +1,1867 @@
+
+/* - library.css - */
+@media all {
+/* http://lib.tamu.edu/portal_css/library.css?original=1 */
+/* */
+/* */
+/* */
+body {
+font-size: 11px;
+font-family: Verdana, Lucida, Helvetica, Arial, sans-serif;
+font-style: normal;
+color: #535353;
+}
+#visual-portal-wrapper {
+color: #666;
+}
+table {
+font-size: 100%;
+}
+a {
+color: #1f5d85;
+}
+h1, h2, h3, h4, h5, h6 {
+color: #1a2830;
+font-family: Verdana, Lucida, Helvetica, Arial, sans-serif;
+}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, #searchTitle, .documentFirstHeading {
+color: #1a2830;
+text-decoration: none;
+}
+h1 {
+font-size: 160%;
+}
+h2 {
+font-size: 130%;
+}
+h3 {
+font-size: 115%;
+border-bottom: none;
+font-weight: bold;
+}
+h4 {
+font-size: 105%;
+border-bottom: none;
+font-weight: bold;
+}
+h5 {
+font-size: 100%;
+border-bottom: none;
+font-weight: bold;
+}
+h6 {
+font-size: 85%;
+border-bottom: none;
+font-weight: bold;
+}
+abbr, acronym, .explain {
+color: #535353;
+}
+dt {
+font-weight: bold;
+}
+q {
+font-family: Baskerville, Georgia, serif;
+font-style: italic;
+font-size: 120%;
+}
+blockquote {
+color: #76797c;
+}
+code, tt {
+font-family: Monaco, "Courier New", Courier, monospace;
+font-size: 120%;
+color: #535353;
+}
+pre {
+font-family: Monaco, "Courier New", Courier, monospace;
+font-size: 100%;
+color: #535353;
+}
+ins {
+color: green;
+text-decoration: none;
+}
+del {
+color: red;
+text-decoration: line-through;
+}
+ul#portal-siteactions li a {
+color: #fff;
+}
+#portal-breadcrumbs {
+color: #fff;
+font-size: 10px;
+}
+#portal-breadcrumbs a, #portal-breadcrumbs a:visited, #portal-breadcrumbs a:active {
+color: #fff;
+text-decoration: none;
+}
+#portal-user {
+color: white;
+position: absolute;
+top: 71px;
+right: 10px;
+z-index: 2;
+}
+#portal-searchbox {
+color: #fff;
+}
+.LSIEFix {
+color: #333;
+}
+#portal-searchbox label.hiddenStructure {
+color: #fff;
+font-size: 16px;
+font-weight: normal;
+}
+#searchTitle {
+font-weight: bold;
+font-size: 14px;
+color: #fff;
+}
+#searchSelect {
+color: #596b78;
+}
+#portal-personaltools a, #portal-personaltools a:hover, #portal-personaltools a:visited {
+color: #fff;
+}
+#portal-advanced-search a {
+color: #fff;
+font-size: 11px;
+font-weight: normal;
+}
+/* */
+.documentContent .navTreeCurrentItem, .documentContent .navTreeCurrentItem a, .documentContent .navTreeItem a,
+.documentContent  dd.portletItem .navTreeItem a, .documentContent .navTreeItem a:hover, .documentContent dd.portletItem .navTreeItem a:hover {
+color: #374f5d;
+}
+/* */
+.pullquote {
+font-style: oblique;
+font-weight: bold;
+color: #5a80a8;
+}
+#portal-colophon h3 a, #portal-colophon h3 a:active, #portal-colophon h3 a:visited {
+color: #fff;
+font-size: 13px;
+}
+html {
+margin: 0;
+padding: 0;
+}
+body {
+background: #1a2830;
+margin: 0;
+padding: 0;
+}
+#visual-portal-wrapper {
+margin: 0 auto;
+padding: 0;
+}
+#visual-portal-wrapper, #portal-top, #portal-header  {
+width: 990px;
+}
+a {
+background-color: transparent;
+}
+a:hover {
+text-decoration: underline;
+}
+img {
+border: none;
+vertical-align: middle;
+}
+p {
+margin: 0 0 2em 0;
+line-height: 1.5em;
+}
+p img {
+border: none;
+margin: 0;
+}
+hr {
+border: 0;
+height: 1px;
+background-color: #8cacbb;
+margin: 0.5em 0 1em 0;
+}
+h1, h2, h3, h4, h5, h6 {
+margin: 0.75em 0 0.25em 0;
+}
+ul {
+line-height: 1.5em;
+padding: 0;
+}
+ol {
+line-height: 1.5em;
+padding: 0;
+}
+li {
+margin-bottom: 0.5em;
+list-style-type: none;
+}
+dt {
+}
+dd {
+margin-bottom: 1em;
+}
+abbr, acronym, .explain {
+border-bottom: 1px dotted #535353;
+background-color: transparent;
+cursor: help;
+}
+abbr .explain {
+border-bottom: none;
+}
+q {
+}
+blockquote {
+padding-left: 0.5em;
+margin-left: 15px;
+}
+code, tt {
+background-color: #dee7ec;
+padding: 0 0.1em;
+}
+pre {
+padding: 1em;
+border: 1px solid #8cacbb;
+background-color: #dee7ec;
+overflow: auto;
+}
+ins {
+text-decoration: none;
+}
+del {
+text-decoration: line-through;
+}
+.draggingHook {
+text-align: center;
+}
+#kss-spinner {
+display: none;
+}
+/* */
+#portal-top {
+height: 90px;
+width: 100%;
+margin: 0;
+padding: 0;
+position: relative;
+z-index: 2;
+}
+#portal-top ul {
+float: right;
+list-style-type: none;
+margin: 4px 8px 0 0;
+padding: 0;
+}
+#portal-top ul li {
+display: inline;
+}
+.page_top_buttons a {
+color: #fff;
+text-decoration: none;
+}
+.top-icon-hover-text {
+display: none;
+position: absolute;
+top: 8px;
+right: 120px;
+}
+.top-icon-hover-text a {
+color: #fff;
+}
+.top-icon-text-shown {
+display: inline;
+color: #fff;
+}
+/* */
+a.top-icon:hover>span.top-icon-hover-text {
+display: inline !important;
+color: #fff;
+}
+/* */
+#portal-header {
+background: #647782 url('http://digital.library.tamu.edu/portal_css/tamulib.digital/++resource++tamulib.library.images/sprites-horizontal-repeat.jpg') repeat-x scroll 0 -15px;
+margin: 0;
+padding: 0;
+height: 65px;
+border: none;
+}
+/* */
+.visualClear {
+display: block;
+clear: both;
+}
+#portal-logo {
+display: block;
+height: 65px;
+background: transparent;
+border: 0px none;
+margin: -15px 0 0 2px;
+padding: 0;
+position: absolute;
+top: 0;
+}
+#portal-logo a {
+border: 0px none;
+cursor: pointer;
+display: block;
+height: 65px !important;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-decoration: none;
+width: 380px;
+}
+#portal-breadcrumbs {
+background: #681121;
+border: 1px solid #ccc;
+display: block;
+height: 25px;
+line-height: 24px;
+position: relative;
+top: 0px;
+text-align: left;
+padding: 0 0 0 5px;
+}
+#path-bar-university-libraries a {
+margin-right: 25px;
+}
+#breadcrumbs-you-are-here {
+margin: 5px 5px 0 10px;
+}
+#portaltab-index_html, #portaltab-directory, #portaltab-front-page, #portaltab-news, #portaltab-events {
+background-repeat: no-repeat;
+}
+#portaltab-index_html a, #portaltab-directory a, #portaltab-front-page a, #portaltab-news a, #portaltab-events a {
+}
+/* */
+ul#portal-siteactions {/**/
+margin: 0;
+padding: 0;
+list-style-type: none;
+float: right;
+position: absolute;
+top: 70px;
+right: 5px;
+z-index: 1;
+font-size: 10px;
+}
+ul#portal-siteactions a {
+text-decoration: none;
+}
+#portal-siteactions li {
+display: inline;
+margin: 0 5px;
+}
+#portal-personaltools-wrapper {
+margin: 0;
+padding: 0;
+position: relative;
+top: 0;
+}
+ul#portal-personaltools {
+list-style-type: none;
+float: right;
+list-style-type: none;
+margin: 0pt;
+padding: 0pt;
+position: absolute;
+right: 0;
+top: 43px;
+z-index: 1;
+}
+#portal-personaltools li {
+float: right;
+display: inline;
+margin: 0 5px;
+padding: 0 5px;
+}
+#portal-personaltools a, #portal-personaltools a:hover, #portal-personaltools a:visited {
+text-decoration: none;
+}
+#portal-header #globalNav {
+float: right;
+position: relative;
+top: 34px;
+right: -50px;
+width: auto;
+background: transparent url('http://library.tamu.edu/global_nav_tabs.jpg') no-repeat scroll 0 0;
+z-index: 3;
+float: right;
+list-style-type: none;
+margin: 0;
+padding: 0;
+width: 356px;
+height: 30px;
+}
+#portal-globalnav li {
+display: block;
+font-weight: bold;
+height: 20px;
+position: relative;
+text-align: center;
+width: auto;
+}
+/* */
+.globalNavTabLink {
+margin: 0 0 0 0;
+padding: 0;
+height: 30px;
+display: block;
+font-size: 1px;
+z-index: 3;
+display: inline;
+float: left;
+}
+/* */
+.globalNavTabLink a {
+background-color: transparent;
+margin: 0 0 0 0;
+padding: 0 0 0 20px;
+height: 30px;
+float: left;
+text-indent: -99999px;
+text-decoration: none;
+}
+#tabHelp .globalNavTabLink a {
+width: 68px;
+}
+#tabServices .globalNavTabLink a {
+width: 63px;
+}
+#tabAbout .globalNavTabLink a {
+width: 63px;
+}
+#tabSearch .globalNavTabLink a {
+width: 68px;
+}
+.globalNavWrapper {
+width: 600px;
+background: transparent url('http://library.tamu.edu/globalNav_bg.png') repeat scroll 0 0;
+padding: 8px;
+float: right;
+position: absolute !important;
+z-index: 50 !important;
+top: 30px;
+display: none;
+}
+li#tabHelp:hover>div {
+right: 260px;
+display: inline;
+}
+li#tabServices:hover>div {
+right: 175px;
+display: inline;
+}
+li#tabAbout:hover>div {
+right: 90px;
+display: inline;
+}
+li#tabSearch:hover>div {
+right: 5px;
+display: inline;
+}
+#globalNav .globalNavWrapper h2 {
+margin: 0 0 10px 8px;
+padding: 0;
+font-weight: normal;
+color: #555;
+}
+#globalNav .globalNavWrapper ul {
+display: block;
+float: left;
+}
+#globalNav .globalNavWrapper li {
+background-color: transparent;
+display: block;
+float: none;
+font-weight: normal;
+margin: 0pt 5px;
+padding: 3px 4px 0pt;
+text-align: left;
+}
+.globalNavBackground {
+display: block;
+border: 1px solid #327D90;
+background: #fff;
+}
+.globalNavSubMenu {
+float: left;
+margin: 0;
+width: 270px;
+padding: 15px 10px 15px 10px;
+}
+.globalNavSubMenuLeft {
+border-right: 1px solid #327D90;}
+.globalNavSubMenuRight {}
+#portal-top ul.globalNavLeftList {
+margin: 0;
+}
+#portal-top ul.globalNavRightList {
+float: right;
+margin: 0 0 0 10px;
+}
+hide-scrollbars {
+overflow: hidden;
+}
+.section-help #tabHelp .globalNavTabLink a,
+.section-tools-services #tabServices .globalNavTabLink a,
+.section-about #tabAbout .globalNavTabLink a,
+.section-search #tabSearch .globalNavTabLink a { color: #fff; }
+.section-help #portal-header #globalNav { background: transparent url('http://library.tamu.edu/global_nav_tabs_help.jpg') no-repeat scroll 0 0; }
+.section-tools-services #portal-header #globalNav { background: transparent url('http://library.tamu.edu/global_nav_tabs_services.jpg') no-repeat scroll 0 0; }
+.section-services #portal-header #globalNav { background: transparent url('http://library.tamu.edu/global_nav_tabs_services.jpg') no-repeat scroll 0 0; }
+.section-about #portal-header #globalNav { background: transparent url('http://library.tamu.edu/global_nav_tabs_about.jpg') no-repeat scroll 0 0; }
+.section-search #portal-header #globalNav { background: transparent url('http://library.tamu.edu/global_nav_tabs_search.jpg') no-repeat scroll 0 0; }
+.template-sitemap #portal-header #globalNav { background: transparent url('http://library.tamu.edu/global_nav_tabs_search.jpg') no-repeat scroll 0 0; }
+.mainLibraryGlobalNav .globalNavSubMenu {width: auto;}
+.mainLibraryGlobalNav #tabHelp .globalNavWrapper {width: 330px;}
+.mainLibraryGlobalNav #tabServices .globalNavWrapper {width: 560px;}
+.mainLibraryGlobalNav #tabAbout .globalNavWrapper {width: 450px;}
+.mainLibraryGlobalNav #tabSearch .globalNavWrapper {width: 500px;}
+.mainLibraryGlobalNav #tabSearch .globalNavSubMenu {width: 220px;}
+/* */
+#globalNavLogin, #globalNavLogout {
+float: right !important;
+position: relative !important;
+right: -40px !important;
+top: -45px !important;
+font-size: 11px !important;
+font-weight: bold !important;
+display: block !important;
+}
+#portal-searchbox {
+display: none;
+height: 25px;
+position: relative;
+top: 0; /* */
+margin: 0;
+padding: 9px 0 0 0 ;
+text-transform: none;
+}
+/* */
+#portal-searchbox form#livesearch0, #portal-searchbox #searchGadget, #portal-searchbox div.LSBox, #portal-searchbox div#portal-advanced-search
+{
+display: inline;
+width: 240px;
+}
+/* */
+#LSResult {
+padding: 0 20px;
+margin: 0 0 0 240px;
+position: relative; /**/
+z-index: 9 !important; /**/
+}
+#LSResult fieldset, #livesearchLegend {
+background-color: #1A2830;
+}
+#LSResult fieldset {
+margin-top: -10px;
+}
+#livesearchLegend {
+padding: 10px 25px 0 25px;
+margin: 0;
+line-height: 10px;
+}
+#LSResult fieldset {
+margin: 0 20px;
+}
+.LSIEFix {
+margin: 12px;
+padding: 15px;
+background-color: #fff;
+}
+.LSResult ul li, .LSTable {
+list-style-type: none;
+}
+.LSResult a, .LSResult ul li a, .LSTable a {
+}
+.LSTable {}
+form#livesearch0 {
+margin-left: 156px;
+}
+#portal-searchbox label.hiddenStructure {
+height: 35px;
+width: 150px;
+display: inline;
+margin: 0 10px 0 0;
+position: relative;
+top: 8px;
+}
+.searchButton {
+margin: 0 10px;
+position: relative;
+top: 5px;
+}
+#searchGadget {
+border: 2px solid #ccc;
+height: 13px;
+padding: 5px 5px 2px 7px;
+}
+.searchSection {
+display: none;
+}
+.LSBox {
+margin: 0;
+display: inline;
+}
+#searchTitle {
+margin-right: 8px;
+}
+#searchSelect {
+background: transparent;
+width: 120px;
+margin: 3px 0 0 10px;
+border: none;
+}
+#searchSelect option {
+background: transparent !important;
+}
+/* */
+#portal-advanced-search {
+margin-left: 20px;
+position: absolute;
+top: 20px;
+left: 600px;
+height: 15px;
+}
+#portal-advanced-search a {
+text-decoration: underline;
+text-transform: none;
+margin: 3px 0 0 10px;
+}
+/* */
+#portal-columns, #portal-columns tbody, #portal-columns tr, #portal-column-one, #portal-column-content {
+margin: 0;
+padding: 0;
+}
+#portal-columns {
+/* */
+border-collapse: separate;
+border-spacing: 0px;
+border: 1px solid #ccc;
+background-color: #fff;
+}
+#portal-column-content {
+background: #fff;
+}
+/* */
+.context {
+margin: 10px 0;
+}
+.context, .formControls .actionButtons .button, .documentEditable * .context {
+background:transparent url('http://library.tamu.edu/linkTransparent.gif') no-repeat scroll 5px 1px;
+}
+.formControls input {
+}
+#portal-column-one .formControls input, #portal-column-two .formControls input {
+color: #fff;
+}
+/* */
+#portal-column-one, #portal-column-one a, #portal-column-one a:visited, #portal-column-one a:active, #portlet-prefs .configlets li a, #portlet-prefs .configlets li a:visited, #portlet-prefs .configlets li a:active{
+background-color: transparent;
+color: #fff;
+}
+#portal-column-one {
+min-height: 300px;
+/* */
+background: transparent;
+width: 200px;
+}
+#portal-column-one .visualPadding {
+padding: 15px 10px 60px 15px;
+background: #394c5a;
+}
+/* */
+#portal-columns tbody, #portal-columns tr, #portal-columns td {
+border-spacing: 0;
+border-width: 0;
+margin: 0;
+}
+.template-document_view table tr td {
+vertical-align: top;
+}
+table.twoColumn tr td {
+width: 50%;
+padding-right: 15px;
+}
+table.threeColumn tr td {
+width: 33%;
+padding-right: 15px;
+}
+div.twoColumn {
+float: left;
+width: 50%;
+}
+div.threeColumn {
+float: left;
+width: 33%;
+}
+#portal-column-two, #portal-column-two a,
+#portal-column-two h2, #portal-column-two h3, #portal-column-two h4,
+#portal-column-two .formControls input {
+background-color: transparent;
+color: #374F5D;
+}
+#portal-column-two {
+min-height: 300px;
+background-color: #eff0f1;
+width: 200px;
+}
+/* */
+.visualPadding {
+}
+/* */
+.portletNavigationTree dt.portletHeader {
+height: 0;
+margin: 0;
+padding: 0;
+visibility: hidden;
+}
+.navTreeItem {
+border-bottom: 1px solid #ccc;
+background:  transparent;
+padding: 3px 10px;
+width: auto;
+}
+.navTreeItem a {
+width: 100%;
+}
+.navTreeCurrentNode {
+}
+.navTreeCurrentItem, .navTreeCurrentItem a, .navTreeItem a, dd.portletItem .navTreeItem a, .navTreeItem a:hover, dd.portletItem .navTreeItem a:hover {
+border: none;
+background-color: transparent;
+color: #fff;
+}
+.navTreeCurrentItem, .navTreeCurrentItem a {
+border: none !important;
+color: #fff;
+}
+.navTreeLevel0 {}
+.navTreeLevel1 li, .navTreeLevel2 li, .navTreeLevel3 li, .navTreeLevel4 li {
+border: none;
+}
+.contenttype-large-plone-folder {
+}
+.state-visible {
+color: #fff !important;
+}
+#statusMenu .state-visible {
+color: #333 !important;
+}
+#region-content fieldset {
+float: none !important;
+}
+li.formTab a {
+padding: 4px 6px !important;
+}
+#portal-column-one .portletWrapper, #portal-column-two .portletWrapper {
+}
+.managePortletsLink {
+clear: both;
+}
+#portal-column-one .managePortletsLink {
+margin: 15px 10px 10px 0;
+}
+#portal-column-two .managePortletsLink {
+margin: 15px 10px 10px 30px;
+}
+.portletNavigationTree, .portletNavigationTree a, .portletNavigationTree a:hover, .portletNavigationTree a:active {
+background-color: transparent;
+border: none;
+}
+dl.portlet, .portlet dd{
+border: 0px;
+margin: 0;
+padding: 0;
+background-color: transparent;
+}
+dl.portlet {
+}
+/* */
+.portletHeader {
+background-color: transparent;
+color: #fff;
+border: 0px;
+padding: 10px 0 15px 0;
+text-transform: none;
+background-position: bottom left;
+background-repeat: no-repeat;
+font-size: 12px;
+}
+#portal-column-two .portletHeader {
+color: #374F5D;
+}
+.portletItem a {
+text-decoration: none;
+}
+.field input {
+}
+dl#portlet-recententry dd {
+margin-left: 20px;
+}
+#portlet-recententry dd {
+padding: 1px 0px 1px 5px;
+border-bottom: 2px dotted #eef0f0;
+}
+#portlet-recententry.portlet dd a {
+padding: 5px 0 20px 10px;
+display: block;
+}
+.portletItemDetails {
+color: #666666;
+}
+#portlet-recententry.portlet dd a:hover {
+background-color: #eef0f0;
+}
+#portlet-category.portlet dd {
+margin: 1px 10px 1px 20px;
+padding: 2px 15px;
+}
+/* */
+.portlets-manager {
+margin: 10px 0;
+}
+.portlets-manager h1, .portlets-manager h2, .portlets-manager h3, .portlets-manager h4, .portlets-manager h5, .portlets-manager h6 {
+color: #fff;
+margin-bottom: 10px;
+}
+.section, .portletAssignments {
+border-bottom: 1px solid #ccc;
+padding: 10px 15px;
+}
+.section div {
+margin: 5px 0 10px 0;
+}
+.section select {
+margin-top: 3px;
+}
+/* */
+#portal-column-content {
+background-color: #fff;
+padding: 30px 30px 20px 35px;
+display: block;
+min-height: 400px;
+}
+/* */
+#parent-fieldname-text {
+position: relative;
+}
+#region-content .documentContent{
+margin: 10px 0;
+border: 0px;
+}
+/* */
+.managePortletsFallback {
+float: right;
+position: relative;
+top: 0;
+right: 22px;
+margin-top: -20px;
+}
+#content {
+min-height: 400px;
+}
+
+#content ol li {
+margin-left: 10px;
+list-style-type: decimal;
+}
+legend {
+background-color: transparent;
+}
+/* */
+#region-content .documentActions {
+float: right;
+margin: 0;
+padding: 0;
+text-align: right;
+}
+#region-content .documentActions ul {
+display: block;
+margin: 20px 10px 10px 10px;
+padding: 0;
+}
+#region-content .documentActions li {
+display: inline;
+list-style-image: none !important;
+list-style-position: outside;
+list-style-type: none;
+margin: 0;
+padding: 0 10px;
+background: none;
+}
+.callout {
+border-top: 1px solid #666666;
+border-bottom: 1px solid #666666;
+padding: 10px;
+margin: 10px;
+}
+.pullquote {
+padding: 10px 20px 20px 25px;
+margin: 10px;
+background: transparent url('http://library.tamu.edu/quotes.jpg') no-repeat 0 0;
+}
+.portalMessage {
+margin: 10px 0 30px 0;
+}
+/* *******/
+#content .plain, #content .listing, .stx table {
+border-collapse: collapse;
+margin: 1em 0em;
+}
+#content .plain th, #content .listing th, .stx table th,
+#content .plain td, #content .listing td, .stx table td {
+padding: 0.25em 1em;
+text-transform: none;
+}
+table.plain {
+border: 1px solid #ddd;
+}
+table.plain th {
+background-color: #eee;
+border-right: 1px solid #ddd;
+border-bottom: 1px solid #ddd;
+}
+table.plain td {
+border-right: 1px solid #ddd !important;
+border-bottom: 1px solid #ddd !important;
+}
+/* */
+.invisible table, .invisible tbody, .invisible tr, .invisible th, .invisible td {
+border-spacing: 0pt;
+border-width: 0pt;
+}
+/* */
+#content .listing, .stx table {
+border-bottom: 1px solid #8CACBB;
+border-left: 1px solid #8CACBB;
+border-right: 1px solid #8CACBB;
+}
+#content .listing th, .stx table th {
+background: #DEE7EC none repeat scroll 0%;
+border-bottom: 1px solid #8CACBB;
+border-top: 1px solid #8CACBB;
+border-right: 1px solid #8CACBB;
+}
+/* */
+#content .grid tr {
+border-bottom: 1px solid #8CACBB;
+}
+#content .grid td {
+border-right: 1px solid #8CACBB;
+}
+/* */
+#content .vertical td {
+border-right: 1px solid #8CACBB;
+}
+/* */
+.odd th, .odd td {
+background-color: #f4f5f7;
+}
+.even th, .even td {}
+/* */
+#portal-column-two dl.portletRss {
+margin: 0 10px 0 25px;
+}
+#portal-column-two dl.portletRss .portletHeader {
+font-size: 12px;
+margin: 0 10px 0 0;
+}
+#portal-column-two dl.portletRss dd {
+margin: 10px 0;
+font-size:100%;
+}
+.clearBoth {
+height: 0;
+clear: both;
+margin: 0;
+padding: 0;
+}
+.section-library-homepage .documentActions, .section-library-homepage .visualClear, .section-library-homepage .documentFirstHeading, .section-library-homepage .documentDescription, .section-library-homepage .relatedItems {
+display: none;
+}
+.section-library-homepage #portal-column-content, .section-library-homepage #content {
+min-height: 0;
+padding: 0;
+margin: 0;
+}
+/* */
+#homepg_content_wrapper {
+position: relative;
+top: 1px;
+margin: 0 0 20px 0;
+padding: 0;
+width: 100%;
+}
+/* */
+.inlineEditable #homepg_content_wrapper, .kupu-html #homepg_content_wrapper {
+position: relative;
+top: 0px;
+margin: 5px;
+}
+#homepg_content_wrapper a {
+text-decoration: none;
+}
+#homepg_content_wrapper a:hover {
+text-decoration: underline;
+}
+#homepg_header_img {
+margin: 0;
+padding: 0;
+float: left;
+}
+#homepg_header_img a {}
+#contentTopRight, #contentTopLeft { display: none;}
+#region-content {
+}
+#homepg_content {
+padding: 0;
+min-height: 200px;
+clear: both;
+}
+#homepg_content ul, #homepg_content ol, #homepg_content dl {
+margin: 25px 2px 10px 10px;
+line-height: normal;
+}
+#homepg_content ul li, #homepg_content dl dd {
+list-style-type: none;
+background: none;
+margin-bottom: 3px;
+padding-left: 5px;
+}
+#homepg_content dt {
+margin: 0 0 5px 0;
+}
+#homepg_content dd {
+margin-left: 0px;
+}
+.homepg_content_column_header {
+display: block;
+float: left;
+height: 22px;
+line-height: 28px;
+margin: 0 0 0 0;
+padding: 0;
+color: #d5d8da;
+font-weight: bold;
+font-size: 18px;
+background-color: #fff;
+}
+.homepg_content_column, .homepg_content_column_header {
+width: 240px;
+}
+.homepg_content_column {
+padding: 0;
+margin: 0 4px 2px 2px;
+background: #fff url('http://library.tamu.edu/content_bg.gif') repeat-x 0 0;
+float: left;
+display: block;
+}
+.homepg_top_element {
+padding-top: 10px;
+}
+.homepg_bold_links li, .homepg_services_links li {
+margin-bottom: 14px;
+}
+.homepg_bold_links a {
+font-weight: bold;
+color: #666666;
+}
+.content_center_column ul.homepg_services_links {
+padding-top: 5px;
+}
+#homepg_content .homepg_more_link {
+font-weight: bold;
+margin-top: 15px;
+}
+.homepg_services_links a {
+font-weight: bold;
+margin-left: -12px;
+}
+#homepg_content_wrapper .content_left_column ul {
+margin-left: 0;
+}
+#homepg_chatwithus_button {
+margin: 0 0 -15px 0;
+}
+#homepg_content .homepg_remove_margin,
+dl#homepg_people dd {
+margin-left: 0;
+padding-left: 0;
+width: 235px;
+}
+#homepg_content #homepg_hours {
+display: block;
+line-height:normal;
+margin: 25px 2px -15px 10px;
+}
+/* */
+#homepg_top_hours {
+background: #5e727e url('http://library.tamu.edu/homepg_top_hours.jpg') no-repeat 0 0;
+display: block;
+height: 144px;
+width: 234px;
+border-left: 1px solid #ccc;
+font-size: 11px;
+}
+#homepg_top_hours p, #homepg_top_hours ul, #homepg_top_hours li {
+margin: 0 0 0 8px;
+padding: 0;
+font-weight: bold;
+}
+#homepg_top_hours li a {
+text-decoration: underline;
+}
+#homepg_top_hours ul, #homepg_top_hours ul li, #homepg_top_hours ul li a {
+list-style-type: none;
+background: none;
+margin: 0 0 0 3px;
+padding: 0;
+}
+#homepg_top_hours p, #homepg_top_hours ul {
+}
+#homepg_top_hours ul {
+position: relative;
+top: 25px;
+left: 20px;
+width: 160px;
+}
+#homepg_top_hours, #homepg_top_hours a {
+color: #fff;
+line-height: 2em;
+}
+#homepg_chatwithus_button a {
+background: transparent url('http://library.tamu.edu/homepg_chatwithus_button.gif') no-repeat 0 0;
+display:block;
+font-size: 14px;
+height: 18px;
+margin: 35px 10px 0 10px;
+padding: 12px 10px 15px 20px;
+width: 160px;
+}
+dl.portletNews {
+display: block;
+background: #eff0f1 url('http://library.tamu.edu/homepg_news_bg.gif') repeat-x 0 25px ;
+min-height: 100px;
+margin-bottom: 20px;
+}
+.portletNews dt.portletHeader, .portletNews dd.portletItem {
+position: relative;
+}
+.portletNews dd.portletItem {
+left: 15px;
+width: 180px;
+top: 0;
+color: #374F5D !important;
+font-size: 12px;
+}
+.portletNews dd.portletItem .right_angle_quote {
+display: block;
+width: 8px;
+float: left;
+margin: 0 8px 0 0;
+}
+#portal-column-two .portletNews dd.portletItem a {
+color: #374F5D;
+display: block;
+margin: 0 0 10px 0;
+float: left;
+width: 163px;
+clear: right;
+}
+.portletNews dt.portletHeader {
+display: block;
+height: 26px;
+width: 234px;
+left: 1px;
+top: 1px;
+background: #374b58 url('http://library.tamu.edu/news_portlet_rss_icon.gif') no-repeat right 2px;
+margin: 0 0 20px 0;
+padding: 0;
+}
+.portletNews dt.portletHeader a {
+font-size: 16px;
+margin: 0 0 15px 0;
+padding: 5px;
+font-weight: normal;
+text-decoration: none;
+line-height: 25px;
+}
+#portal-column-two .portletNews dt.portletHeader a {
+color: #fff;
+}
+.portletNews dt.portletHeader a.all_feeds {
+font-size: 10px;
+display: inline;
+position: relative;
+right: -28px;
+color: #b2babf !important;
+}
+.portletNews dd.portletItem .portletItemDetails {
+display: none;
+}
+.portletNews dd.portletFooter a {
+}
+dl.portletEvents {
+display: block;
+background-color: #eff0f1;
+margin-bottom: 10px;
+}
+.portletEvents dd.portletItem,
+.portletEvents dd.portletFooter {
+position: relative;
+left: 15px;
+width: 180px;
+top: 0;
+color: #374F5D !important;
+font-size: 12px;
+}
+.portletEvents dd.portletItem .right_angle_quote {
+display: block;
+width: 8px;
+float: left;
+margin: 0 8px 0 0;
+}
+#portal-column-two .portletEvents dd.portletItem a,
+#portal-column-two .portletEvents dd.portletFooter a {
+color: #374F5D;
+display: block;
+margin: 0 0 10px 0;
+float: left;
+width: 163px;
+clear: right;
+}
+.portletEvents dt.portletHeader {
+display: none;
+}
+.portletEvents dt.portletHeader a {
+color: #fff;
+font-size: 16px;
+margin: 0 0 15px 0;
+padding: 5px;
+font-weight: normal;
+text-decoration: none;
+line-height: 25px;
+}
+.portletEvents dt.portletHeader a.all_feeds {
+font-size: 10px;
+display: inline;
+position: relative;
+right: -30px;
+color: #b2babf !important;
+}
+.portletEvents dd.portletItem .portletItemDetails {
+display: none;
+}
+.portletEvents dd.portletFooter a {
+}
+#homepg_content_wrapper.landing_page {
+margin: -90px -20px 0 -35px; /**/
+width: 986px;
+}
+#homepg_content_wrapper.landing_page #homepg_content {
+}
+#homepg_content_wrapper.landing_page #homepg_content {
+}
+/* */
+.documentEditable #homepg_content_wrapper.landing_page {
+margin: 0;
+position: relative;
+}
+#homepg_content_wrapper.landing_page .homepg_content_column{
+margin: 0 2px 0 4px;
+}
+.homepg_content_wide_column,
+.homepg_content_wide_column .homepg_content_column_header {
+width: 488px;
+}
+#homepg_content_wrapper.landing_page ul,
+#homepg_content_wrapper.landing_page ol,
+#homepg_content_wrapper.landing_page dl,
+#homepg_content h4 {
+margin: 15px 2px 0px 10px;
+}
+#homepg_content_wrapper .homepg_top_element {
+padding-top: 15px;
+}
+.homepg_content_subcolumn {
+float: left;
+width: 238px;
+}
+.kupu {
+background: #fff;
+font-size: 12px;
+}
+/* */
+.documentEditable .documentContent {
+margin-bottom: 20px;
+padding: 20px !important;
+background-color: transparent;
+border: 1px solid #192931 !important;
+}
+.kupu-fulleditor {
+margin: 0;
+}
+#parent-fieldname-text .form {
+margin: 0;
+}
+#document-base-edit textarea {
+width: 100%;
+}
+#document-base-edit fieldset {
+padding: 10px 20px;
+}
+#portal-footer {
+background: #2e424f;
+text-align: left;
+border-right: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+border-left: 1px solid #ccc;
+display: block;
+height: 20px;
+margin: 0;
+padding: 10px 15px;
+}
+#portal-footer h3{
+margin: 5px 0 0 20px;
+font-size: 11px;
+}
+#portal-footer a, #portal-footer a:visited {
+color: #fff;
+}
+#footer_rss_icon {
+margin: 3px 40px 3px 5px;
+}
+#footer_title, #footer_title a {
+color: #fff;
+font-size: 16px;
+text-decoration: none;
+}
+#footer_news_banner, #footer_news_banner img a {
+}
+#footer_news_text, #footer_news_text a {
+font-size: 13px;
+color: #aaa;
+text-decoration: none;
+}
+.footer_span {
+margin: 0 10px;
+padding: 0;
+}
+.footer_links br {
+clear: left;
+}
+div.footer_links, .colophonWrapper ul li {
+float: left;
+margin-left: 40px;
+padding: 0;
+}
+.footer_links ul {
+margin: 0 0 15px 0;
+padding: 0;
+list-style: none;
+}
+.footer_links li {
+width: 150px;
+margin: 0;
+margin-right: 25px;
+padding: 0;
+float: left;
+text-align: left;
+}
+.footer_links a {
+display: block;
+width: 100%;
+text-decoration: none;
+}
+.footer_links a:hover {
+}
+#portal-colophon {
+display: block;
+margin: 0 0 20px 0;
+padding: 0;
+min-height: 20px;
+}
+#portal-colophon h3 a, #portal-colophon h3 a:active, #portal-colophon h3 a:visited {
+float: left;
+display: inline-block;
+margin: 0 15px 0 15px;
+padding: 10px 5px 0 25px;
+height: 25px;
+line-height: 15px;
+}
+.colophonWrapper {
+float: left;
+margin-left: 25px;
+width: 750px;
+}
+.colophonWrapper ul {
+display: inline;
+padding: 0;
+margin: 0;
+}
+.colophonWrapper ul li {
+list-style-type: none;
+display: inline;
+margin-top: 10px;
+line-height: 15px;
+}
+#portal-colophon a, #portal-colophon a:active, #portal-colophon a:visited,
+#portal-colophon ul li a, #portal-colophon ul li a:active, #portal-colophon ul li a:visited {
+text-decoration: none;
+color: #999;
+font-weight: normal;
+font-size: 12px;
+}
+.trackbackURLBox, trackbackURLBlock {
+visibility: hidden;
+height: 0 !important;
+width: 0 !important;
+overflow: hidden;
+}
+/* */
+.contentViews {
+background-color: transparent;
+margin: 0 5px;
+padding: 0 0 0 8px;
+line-height: normal;
+list-style: none;
+border: 1px solid #192931;
+border-top-width: 0px;
+border-left-width: 0px;
+border-right-width: 0px;
+}
+.contentViews li {
+display: inline;
+padding-top: 0.5em;
+}
+.contentViews li a {
+background-color: #FBFBF3;
+color: #192931;
+border: 1px solid #192931;
+height: auto;
+margin-right: 0.5em;
+padding: 0em 1em;
+line-height: normal;
+text-decoration: none;
+text-transform: lowercase;
+z-index: 1;
+}
+.contentViews .selected a {
+border-bottom: 1px solid #CDE2A7;
+color: #112637;
+}
+.contentViews li a:hover {
+background-color: #dde7ec;
+color: #192931;
+}
+.configlet .contentViews {
+font-size: 90%;
+}
+/* */
+.contentActions {
+border-left: 1px solid #192931;
+border-right: 1px solid #192931;
+text-align: right;
+text-transform: lowercase;
+padding: 0 0 0 1em;
+z-index: 2;
+position:relative;
+height: 1.6em;
+}
+.contentActions ul,
+.contentActions li {
+margin: 0;
+list-style: none;
+list-style-image: none;
+display: inline;
+color: #192931;
+text-align: left;
+}
+.contentActions ul {
+line-height: 1.6em;
+padding: 0;
+margin: 0;
+}
+.contentActions li {
+float: right;
+z-index: 4;
+border-left: 1px solid #192931;
+line-height: 1.6em;
+}
+.actionItems li {
+background-image: none;
+}
+.contentActions a {
+text-decoration: none;
+color: #192931;
+padding: 0 0.5em;
+}
+.actionMenu {
+/* */
+position: relative;
+margin: 0;
+padding: 0;
+}
+.actionMenu .actionMenuHeader {
+margin: 0;
+padding: 0;
+font-weight: normal;
+cursor: pointer;
+}
+.actionMenu.activated .actionMenuHeader {
+position: relative;
+z-index: 10;
+}
+.actionMenu .actionMenuHeader a {
+display: block;
+}
+.actionMenuHeader {
+padding: 0 4px !important;
+}
+.actionMenuDisabled, .deactivated .actionMenuHeader {
+color: #666666;
+cursor: default;
+}
+.actionMenu .actionMenuContent {
+display: none;
+z-index: 5;
+position: absolute;
+top: 1.6em;
+right: -1px;
+height: auto;
+padding: 0;
+margin: 0;
+cursor: pointer;
+}
+.actionMenu .actionMenuContent ul {
+display: block;
+background: #dde7ec;
+border: 1px solid #192931;
+margin: -2px 0 0 0;
+padding: 0;
+cursor: pointer;
+}
+.actionMenu.activated .actionMenuContent {
+display: block !important;
+}
+.actionMenu.activated .actionMenuContent {
+/* */
+display: table !important;
+border-collapse: collapse;
+border-spacing: 0;
+}
+.actionMenu.deactivated .actionMenuContent {
+display: none !important;
+}
+.actionMenu .actionMenuContent li {
+float: none;
+background-color: transparent;
+display: inline;
+padding: 0;
+margin: 0;
+border: 0;
+}
+.actionMenu .actionMenuContent li a {
+display: block;
+white-space: nowrap;
+padding: 0 0.5em;
+margin: 0.2em 0;
+}
+.actionMenu .actionMenuContent .selected {
+display: block;
+white-space: nowrap;
+padding: 0 0.5em;
+margin: 0.2em 0;
+}
+.actionMenu .actionMenuContent li a:hover {
+background-color: #dde7ec;
+color: White;
+}
+.actionMenu .actionMenuContent .actionSeparator a {
+margin-top: 0.2em;
+padding-top: 0.2em;
+border-top: 1px solid #192931;
+}
+.actionMenu .actionMenuContent .actionSeparator div.currentDefaultPage {
+margin-top: 0.2em;
+padding: 0.2em 0.5em 0em 0.5em;
+white-space: nowrap;
+border-top: 1px solid #192931;
+}
+.actionMenu .actionMenuContent .actionSeparator div.actionLabel {
+margin-top: 0.2em;
+padding: 0.2em 0.5em 0em 0.5em;
+white-space: nowrap;
+border-top: 1px solid #192931;
+background-color: #dde7ec;
+color: #192931;
+cursor: default;
+}
+.contentBatchAction {
+float: left !important;
+padding: 0 0.5em;
+border-top: 1px solid #192931;
+border-right: 1px solid #192931;
+border-left: none !important;
+border-collapse: collapse;
+position: relative;
+top: -1px;
+margin-left: -0.5em !important;
+}
+#objectMenu.actionMenu .actionMenuContent li {
+display: block;
+}
+#objectMenu.actionMenu .actionMenuContent li,
+#objectMenu.actionMenu .actionMenuContent li a:hover {
+background-position: 3px 50%;
+margin-left: 0;
+}
+#objectMenu.actionMenu .actionMenuContent li a {
+padding-left: 22px;
+}
+.actionMenuSelected {
+display: block;
+cursor: default;
+background: transparent url('http://library.tamu.edu/bullet_icon.gif') no-repeat 0 3px;
+padding-left: 16px !important;
+}
+#templateMenu li a {
+padding-left: 16px;
+}
+/* */
+/* */
+.listing * {
+color: #192931;
+}
+.draggable a {
+text-decoration: underline;
+}
+#listing-table td.draggable a {
+text-decoration: none;
+padding-left: 5px;
+}
+#listing-table .state-published {
+}
+#listing-table .state-private {
+color: #97000A;
+}
+.template-library_homepg #portal-column-content {
+padding: 0;
+}
+#tempSearchWrapper {
+display: block;
+padding: 0px 10px 0px 10px;
+margin: 0;
+width: 538px;
+height: 190px;
+color: #fff;
+float: left;
+background: #5e727d url(http://library.tamu.edu/homepg_search_bg.jpg) repeat-x scroll 0 -10px;
+}
+#tabs {
+display: block;
+}
+#portal-column-content #tabs ul li {
+background: transparent none;
+padding-left: 0;
+}
+#portal-column-content #tempSearchTopTabs {
+margin: 10px 0 20px 0;
+padding: 4px 5px;
+list-style: none;
+height: 20px;
+background-color: #161f24;
+position: relative;
+z-index: 2;
+}
+#portal-column-content #tabs #tempSearchTopTabs li {
+margin: 0 0 0 0;
+padding: 0 0 0 0;
+}
+#tempSearchTopTabs a {
+float: left;
+margin: 0 15px 0 0;
+padding: 0 0 0 0;
+text-decoration: none;
+font-weight: bold;
+font-size: 100%;
+color: #fff;
+display: block;
+height: 20px;
+line-height: 12px;
+}
+#tabHeader1.ui-tabs-selected a { background-color: #F2AF00;}
+#tabContent1 h2 { color: #F2AF00; }
+#tabHeader2.ui-tabs-selected a {
+background-color: #559c6b;
+color: #30444e;
+}
+#tabContent2 h2 { color: #5aa672; }
+#tabHeader3.ui-tabs-selected a { background-color: #324d84; }
+#tabContent3 h2 { color: #5079d1; }
+#tabHeader4.ui-tabs-selected a { background-color: #684065; }
+#tabContent4 h2 { color: #aa68a4; }
+#tabHeader5.ui-tabs-selected a { background-color: #30576e; }
+#tabContent5 h2 { color: #569cc4; }
+.homepg_slideshow img {
+display: none;
+}
+#homepg_header_img .show_images img {
+display: block;
+}
+#homepg_header_img .hide_images img {
+display: none;
+}
+#tabs a {
+color: #fff;
+}
+#tabs a span {
+float: left;
+padding: 4px 9px 2px 6px;
+}
+#tabs a span{float:none;}
+#tabs a:hover{}
+#tabs a:hover span{}
+#tempSearchTopTabs li a span {
+display: block;
+}
+.booksTab span {}
+.articlesTab span {}
+.ejournalsTab span {}
+.databasesTab span {}
+.searchTab span {}
+#portal-column-content #tempSearchTopTabs.tempSearchTab1 {
+}
+#portal-column-content #tempSearchTopTabs.tempSearchTab2 {
+}
+#portal-column-content #tempSearchTopTabs.tempSearchTab3 {
+}
+#portal-column-content #tempSearchTopTabs.tempSearchTab4 {
+}
+#portal-column-content #tempSearchTopTabs.tempSearchTab5 {
+}
+#tempSearchTopTabs li a:hover {
+text-decoration: none;
+border: none;
+}
+#tabs div.ui-tabs-hide {
+display: none;
+}
+#tabContentWrapper {
+background-color: #161f24;
+height: 120px;
+}
+.tabContent {
+display: block;
+clear: both;
+padding: 20px 10px 10px 20px;
+}
+.tabContent * {
+margin: 0;
+padding: 0 ;
+line-height: normal;
+}
+.tabContent .tempSearchForm {
+margin: 0;
+}
+.tabContent a {
+color: #164769;
+background: transparent;
+font-weight: normal;
+display: inline;
+}
+.tabContent h2 {
+color: #fff;
+font-size: 150%;
+font-weight: normal;
+}
+.tabContent .homepg_search_arrow {
+background: transparent url('http://library.tamu.edu/homepg_search_arrow.gif') no-repeat 0px 0;
+position: relative;
+margin: 0 0 -20px 0;
+top: -38px;
+display: block;
+width: 26px;
+height: 18px;
+}
+#tabContent1 .homepg_search_arrow { left: 25px; }
+#tabContent2 .homepg_search_arrow { left: 120px; }
+#tabContent3 .homepg_search_arrow { left: 200px; }
+#tabContent4 .homepg_search_arrow { left: 300px; }
+#tabContent5 .homepg_search_arrow { left: 395px; }
+.tempSearchField {
+margin: 10px 10px 10px auto;
+padding: 4px 5px;
+width: 400px;
+}
+.tempSearchButton, input.tempSearchButton {
+padding: 2px 6px;
+cursor: pointer !important;
+}
+#tempSearchWrapper .tabContent ul,
+#tempSearchWrapper .tabContent ol,
+#tempSearchWrapper .tabContent dl {
+margin: 10px 0;
+}
+.tabContent li {
+display: block;
+}
+/* */
+#portal-columns {
+margin-top: 0;/* */
+}
+#homepg_top_hours {
+position: relative;
+margin-top: 1px;
+}
+/* */
+#portal-searchbox form, #portal-searchbox label, #portal-searchbox form#livesearch0, #searchGadget, #portal-searchbox div.LSBox, #portal-searchbox div.LSResult, #portal-searchbox div.LSShadow, #portal-searchbox div#portal-advanced-search {
+display: none;
+}
+/* */
+/* */
+#portal-searchbox {
+z-index: -1;
+}
+#portal-top {
+background-color: #647782;
+}
+#portal-columns {
+/*
+Causes odd interactions with Sortable jq-ui widget in Firefox
+for some psychotic reason
+position: relative;*/
+position: inherit;
+background-color: #fff;
+z-index: 1;
+}
+#portal-siteactions {
+z-index: 3 !important;
+}
+#portal-breadcrumbs {
+z-index: 1;
+}
+#portal-columns {
+border-top: 0px none;
+}
+/* */
+/* */
+#portal-globalnav,
+#portal-personaltools,
+#link-presentation,
+.footer_span {
+display: none;
+}
+/* */
+/* */
+/* */
+
+}
+

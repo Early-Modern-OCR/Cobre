@@ -1,0 +1,154 @@
+{% extends "book_base.html" %}
+{% load bookreader_djatoka %}
+
+{% block head_styles %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="/theme/css/facebox.css" />
+<link rel="stylesheet" type="text/css" href="/theme/css/jquery-ui-1.8.4.custom.css" />
+<link rel="stylesheet" type="text/css" href="/theme/css/filmstrip.css" />
+{% endblock %}
+
+{% block head_javascript %}
+{{ block.super }}
+<script type="text/javascript" src="/theme/openlayers/OpenLayers.js"></script>
+<script type="text/javascript" src="/theme/js/layers.js"></script>
+
+<script type="text/javascript" src="/theme/js/jquery-ui.min.js"></script>
+<!-- <script type="text/javascript" src="/theme/js/jquery.filmstrip.combined.min.js"></script> -->
+<script type="text/javascript" src="/theme/js/jquery.scrollTo-1.4.2.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.serialScroll.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.filmstrip.js"></script>
+<script type="text/javascript" src="/theme/js/facebox.min.js"></script>
+<script type="text/javascript" src="/theme/js/tamulib.libros.transcription.js"></script>
+
+<script type="text/javascript">
+var djatoka_metadata_base='{% url jp2_metadata %}';
+var djatokaBaseUrl = '{% djatoka_base_url %}';
+var globalMap = null;
+
+jQuery(document).ready(function() {
+	var options = {
+		serialScroll: {
+			offset: -58}};
+	{% if sequence %}
+	options.serialScroll.start = {{ sequence }}-1,
+	options.serialScroll.force = true;
+	{% endif %}
+	
+	jQuery('#additionalActions a').hide();
+	
+	jQuery('#reloadTranscriptions').click(function () {
+			var id = $('#transcriptions').attr('pagepk');
+			alert("Reloading transcriptions for page " + id);
+			
+	        jQuery('#transcriptions').attr('pagepk',id);
+
+			jQuery('.page-transcriptions').hide();
+       		jQuery('#page-transcriptions-'+id).show();
+	});
+	
+	jQuery('.pages').filmstrip(options);
+		
+	jQuery('.pages a').click(function (event) {
+		event.preventDefault();
+		jQuery('div.filmstrip > ul.filmstrip > li.currentlyViewedFilmstripPage').removeClass('currentlyViewedFilmstripPage');
+        jQuery('div.filmstrip > ul.filmstrip > li#'+$(this).attr('id')).addClass('currentlyViewedFilmstripPage');
+		load_page($(this).attr('href'));
+		var id = $(this).attr('id').replace('page_','');
+        jQuery('#reading-link').attr('href','{% url bookreader-book-read object_id=book.pk %}?page='+$(this).attr('longdesc'));
+		jQuery('#print-link').attr('href','/page/'+id+'/print/');
+        jQuery('#add_transcription').attr('href','/page/'+id+'/add-transcription/');
+        jQuery('#transcriptions').attr('pagepk',id);
+        
+		jQuery('.page-transcriptions').hide();
+        jQuery('#page-transcriptions-'+id).show();
+        
+        if (jQuery('.filmstripWrapper').hasClass('running')) {
+			jQuery('.slideshowControl').click();
+		}        
+        
+		window.location.hash = "?page="+id;
+	});
+	
+	{% if sequence_page and sequence_page.jp2 %}
+	load_page('{{ sequence_page.jp2 }}');
+	jQuery('#page_{{ sequence_page.pk }}').addClass('currentlyViewedFilmstripPage');   
+	{% else %}
+	{% if book.first_page and book.first_page.jp2 %}
+	load_page('{{ book.first_page.jp2 }}');
+	jQuery('#page_{{ book.first_page.pk }}').addClass('currentlyViewedFilmstripPage');  
+	{% endif %}
+	{% endif %}
+	
+	var page = window.location.hash;
+	if (page != '' && page != '#' && page.substr(0,7) == "#?page=") {                                                                     
+        var anchor = jQuery('a#page_'+page.substr(7));
+		anchor.click();
+		jQuery('div.filmstrip').serialScroll('jump',
+				jQuery('div.filmstrip').serialScroll('index',anchor.parent()));		     
+	}
+	
+	jQuery('div.filmstrip').bind('onBeforeResize.filmstrip', function(event, klass) {
+		if (typeof klass == 'undefined') return;
+		
+		var $this = $(this),
+			currentIndex = $this.serialScroll('index',$this.find('.currentlyViewedFilmstripPage')),
+			currentPos = $this.serialScroll('current');
+		
+		var widthInterval = $this.filmstrip('numberOfItemsVisible');
+	    
+		if (!(currentIndex < currentPos + widthInterval - 1  && currentIndex > currentPos)) 
+             return;
+        
+	    $this.serialScroll('jump',currentIndex);
+	});
+});
+</script>
+<script type="text/javascript" src="/theme/js/jquery.jfontsize-1.0.js"></script>
+
+{% endblock %}
+
+{% block breadcrumb %}{{ block.super }} &rarr; Detailed Pages{% endblock %}
+
+{% block main_content %}
+	<ul id="additionalActions">
+		<li>
+			<a id="reading-link" title="Reading view of the current page"
+				href="{% url bookreader-book-read object_id=book.pk %}{% if sequence_page %}?page={{ sequence_page.reading_page }}{% endif %}">Reading view of the current page</a>
+		</li>
+		<li>
+			<a id="print-link" title="Print a high resolution version of the current page"
+				href="{% if sequence_page %}{% url bookreader-page-print sequence_page.pk %}{% endif %}">Printable version of the current page</a> 
+		</li>
+		<li>
+			{% if perms.bookreader.add_transcription %}
+			<a id="add_transcription" title="Transcribe the current page" href="{% if sequence_page %}{% url bookreader-page-add-transcription sequence_page.pk %}{% endif %}">Transcribe the current page</a>
+			{% endif %}
+		</li>
+	</ul>
+	<div id="viewerWrapper">
+		<div id="viewer" style="height: 600px;"></div>
+	</div>
+	<div class="clearall"></div>
+	
+	<ul class="pages" id="{{ book.identifier|slugify }}-pages">
+		{% for page in book.pages.all %}
+			{% include "bookreader/filmstrip/details_page.html" %}
+		{% endfor %}
+	</ul>
+	
+	<div id="transcriptions">
+		<h2 id="transcriptions-header"> Transcriptions </h2>
+		
+		{% for pg in book.pages.all %}
+			<list class= "page-transcriptions" id="page-transcriptions-{{pg.pk}}">
+			{% for tr in pg.transcriptions.all %}
+				<li><div class="transcription-text" id="transcription-text-{{tr.pk}}" author_id="{{tr.author.pk}}">({%if tr.author.first_name or tr.author.last_name %} {{tr.author.first_name}} {{tr.author.last_name}} {%else%} {{tr.author.username}} {%endif%} ) {{tr.text}} </div></li>
+			{% endfor %}
+			</list>
+		{% endfor %}
+	</div>
+	
+	<div class="clearall"></div>
+{% endblock %}

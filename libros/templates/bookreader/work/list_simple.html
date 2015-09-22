@@ -1,0 +1,52 @@
+{% if work_list %}
+
+	{% if sort_by %}
+	<div class="sort_links">
+		Sort by:
+		<a href="{% url bookreader-work-list %}?sort_by=title" class="sort_link {% if sort_by == 'title' %}selected{% endif %}">Title</a>
+		<a href="{% url bookreader-work-list %}?sort_by=author" class="sort_link {% if sort_by == 'author' %}selected{% endif %}">Author</a>
+		<a href="{% url bookreader-work-list %}?sort_by=printer" class="sort_link {% if sort_by == 'printer' %}selected{% endif %}">Printer</a>
+		<a href="{% url bookreader-work-list %}?sort_by=year" class="sort_link {% if sort_by == 'year' %}selected{% endif %}">Year</a>
+	</div>
+	{% endif %}
+	
+	<ul id="works">
+    {% for work in work_list %}
+        <li class="work">
+        	{% if sort_by == 'title' %}
+        		<span class="sort_value">[{% firstof work.title|slice:"0:1" ' - ' %}]</span>
+        	{% endif %}
+        	{% if sort_by == 'author' %}
+        		<span class="sort_value">[{% firstof work.creator ' - ' %}]</span>
+        	{% endif %}
+        	{% if sort_by == 'printer' %}
+        		<span class="sort_value">[{% firstof work.additional_metadata.publisher ' - ' %}]</span>
+        	{% endif %}
+        	{% if sort_by == 'year' %}
+        		<span class="sort_value">[{% firstof work.created ' - ' %}] </span>
+        	{% endif %}
+        	<a href="{% url bookreader-book work.pk %}">{{ work.title }}. {%if sort_by != 'author' %}{{work.creator}}, {% endif %}{{work.created}} {%if work.additional_metadata.contributor %} (Contributed by {{work.additional_metadata.contributor }}) {% endif %}</a>
+		</li>
+    {% endfor %}
+	</ul>
+
+	{% if is_paginated %}
+	<div class="pagination">
+    	<span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+	</div>
+	{% endif %}
+{% else %}
+    <p class="callout">No titles are available.</p>
+{% endif %}

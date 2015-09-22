@@ -1,0 +1,43 @@
+{% extends "book_base.html" %}
+{% block head_styles %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="/theme/css/facebox.css" />
+<link rel="stylesheet" type="text/css" href="/theme/css/jquery-ui-1.8.4.custom.css" />
+<link rel="stylesheet" type="text/css" href="/theme/css/filmstrip.css" />
+<link rel="stylesheet" type="text/css" href="/theme/css/editor.css" />
+{% endblock %}
+
+{% block head_javascript %}
+{{ block.super }}
+<script type="text/javascript" src="/theme/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/theme/js/facebox.min.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.filmstrip.combined.min.js"></script>
+<script type="text/javascript" src="/theme/js/tamulib.libros.editor.js"></script>
+{% endblock %}
+
+{% block breadcrumb %}{{ block.super }} &rarr; Edit Exterior Views{% endblock %}
+
+{% block main_content %}
+	<h2>Interior Pages</h2>
+	<ul class="pages editing" id="{{ book.identifier|slugify }}-pages">
+		{% for page in book.internal_pages.all %}
+		{% include "bookreader/filmstrip/edit_page.html" %}
+		{% endfor %}
+	</ul>
+	<h2>Exterior Views</h2>
+	<ul class="exterior" id="{{ book.identifier|slugify }}-exterior">
+		{% for page in exterior %}
+		{% include "bookreader/filmstrip/edit_exterior.html" %}
+		{% endfor %}
+	</ul>
+	<h3>Remove Pages</h3>
+	<div class="filmstrip">
+		<ul id="contentSource">
+			<li class="trashCan"><div class="trashCan"><div>Delete Page</div><div class="trashCanIcon">&nbsp;</div></div></li>
+		</ul>
+	</div>
+	<ul class="visualClear">
+		<li class="hidden"><a href="{% url bookreader-editor-update-page-order book.pk %}" class="save_order">Save Now!</a></li>
+		<li class="hidden"><a href="{% url bookreader-editor-add-page book.pk %}" class="add_page">Add a new page</a></li>
+	</ul>
+{% endblock %}

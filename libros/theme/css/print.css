@@ -1,0 +1,17 @@
+#portal-top {display: none;}
+#portal-footer {display: none;}
+#portal-colophon {display: none;}
+#portal-column-one {display: none;}
+#flagging-tools {display: none;}
+p.alpha-list{display: none;}
+div.record-tools {display: none;}
+div.record-button {display: none;}
+div.paginator {display: none;}
+span.record-options {display: none;}
+
+#portal-column-content {font-family: Helvetica, Arial, Verdana, Sans-serif;}
+div.record-info h3 {padding: 0; margin: 0; font-size: 10pt;}
+div.record-info p {padding: 0; margin: 0; font-size: 8pt;}
+div.record-info h3 a {text-decoration: none; color: black;}
+div.record-info p a {text-decoration: none; color: black;}
+div.record-info p.subjects {border-bottom: 1px solid black; padding-bottom: 1.5em; margin-bottom: 1.5em;}

@@ -1,0 +1,79 @@
+{% extends "book_base.html" %}
+
+{% block main_content %}	
+	
+	<dl id="metadata-block">
+		<dt class="metadata-key">Author</dt>
+		<dd class="metadata-val">{{ book.creator }}</dd>
+		
+		<dt class="metadata-key">Published</dt>
+		<dd class="metadata-val">{{ book.created }}</dd>
+		
+		<dt class="metadata-key">Collection</dt>
+		<dd class="metadata-val">{{ book.collection.name }}</dd>
+
+		<dt class="metadata-key">Repository</dt>
+		<dd class="metadata-val">{{ book.collection.repository.name }}</dd>
+		
+		<dt class="metadata-key">Issued</dt>
+		<dd class="metadata-val">{{ book.issued }}</dd>
+		
+		{% if book.canonical %}
+		<dt class="metadata-key">Canonical Version</dt>
+		<dd class="metadata-val"><a href="{% url bookreader-book object_id=book.canonical.pk %}">{{ book.canonical.title }}</a></dd>
+		{% endif %}
+		
+		{% if book.copies.count > 0 %}
+		<dt class="metadata-key">Alternate Versions</dt>
+		<dd class="metadata-val">
+		{% for copy in book.copies.all %}
+		<a href="{% url bookreader-book object_id=copy.pk %}">{{ copy.title }}</a>{% if not forloop.last %}; {% endif %}
+		{% endfor %}
+		</dd>
+		{% endif %}
+		
+		{% for key,values in book.additional_metadata.iterlists %}
+		{% if key != "offset" and key != "other subject" %}
+		<dt class="metadata-key">{{ key|title }}</dt>
+		<dd class="metadata-val">
+		{% if values|length > 1 %}
+		{% for value in values %}<div>{{ value }}</div>{% endfor %}
+		{% else %}
+		{{ values|first }}
+		{% endif %}
+		</dd>
+		{% endif %}
+		{% endfor %}
+	</dl>
+	
+	<ul id="book-overview-navigation">
+		{% if book.type != "canonical" %}
+		<li><a href="{% url bookreader-book-read object_id=book.pk %}" class="reading-view" title="Basic reading view">Start Reading View</a></li>
+		<li><a href="{% url bookreader-book-pages object_id=book.pk %}" class="detailed-view" title="Detailed view, combining a filmstrip view of the book with a high-resolution tiled viewer of individual pages.">Detailed View</a></li>
+		{% else %}
+		<li><a href="{% url bookreader-book-canonical object_id=book.pk %}" class="canonical-view" title="Canonical/Abstract view of the book's structure and annotations.">Canonical View</a></li>
+		{% endif %}
+		<li><a href="{{ book.repository_url }}" class="repository-view" title="View images in the source repository">View in Repository</a></li>
+		{% for link in book.links.all %}
+		{% if link.mimetype == 'application/pdf' %}
+		<li><a href="{{ link.url }}" class="pdf-view" title="Download PDF version">Download PDF</a></li>
+		{% endif %}
+		{% endfor %}
+		<li><a href="{% url bookreader-book-add-compare book.pk %}" class="comparison add-comparison" title="Add to comparison list">Add to compare</a></li>
+		{% if book.canonical %}
+		<li><a href="{% url bookreader-book book.canonical.pk %}" class="canonical-view" title="Canonical/Abstract view of the book's structure and annotations.">Canonical Version</a></li>
+		{% endif %}
+		
+		{% if perms.bookreader.change_book %}
+		<li><a href="{% url bookreader-editor-pages book.pk %}" class="edit-pages-view" title="Edit the book: page order, missing pages, and annotations.">Edit Pages</a></li>
+		<li><a href="{% url bookreader-book-bitstream-metadata book.pk %}" class="bitstream-metadata-view" title="Download the XML bitstream metadata file">Bitstream Metadata File</a></li>
+		{% endif %}
+	</ul>
+	
+	{% if book.type == "canonical" %}
+	<div id="annotationsWrapper">
+		{% include "bookreader/annotation/book_detail.html" %}
+	<div class="visualClear">&nbsp;</div>
+	{% endif %}
+</div>
+{% endblock %}

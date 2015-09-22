@@ -1,0 +1,71 @@
+{% extends "main.html" %}
+{% load bookreader_djatoka %}
+
+{% block breadcrumb %}Compare Books{% endblock %}
+
+{% block head_styles %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="/theme/css/facebox.css" />
+<link rel="stylesheet" type="text/css" href="/theme/css/jquery-ui-1.8.4.custom.css" />
+<link rel="stylesheet" type="text/css" href="/theme/css/filmstrip.css" />
+{% endblock %}
+
+{% block head_javascript %}
+{{ block.super }}
+<script type="text/javascript" src="/theme/js/facebox.min.js"></script>
+<script type="text/javascript" src="/theme/js/jquery-ui.min.js"></script>
+<!-- <script type="text/javascript" src="/theme/js/jquery.filmstrip.combined.min.js"></script> -->
+<script type="text/javascript" src="/theme/js/jquery.scrollTo-1.4.2.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.serialScroll.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.filmstrip.js"></script>
+<!-- <script type="text/javascript" src="/theme/js/comparison.min.js"></script> -->
+<script type="text/javascript" src="/theme/js/comparison.js"></script>
+<script type="text/javascript" src="/theme/js/tamulib.libros.transcription.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	jQuery('.pages a').click(function(event) {
+		event.preventDefault();
+		if (jQuery('.filmstripWrapper').hasClass('running')) {
+			jQuery('.running .slideshowControl').click();
+		}
+	});
+});
+</script>
+<script type="text/javascript" src="/theme/js/jquery.jfontsize-1.0.js"></script>
+	
+{% endblock %}
+
+{% block main_content %}
+{% if compare %}
+	<ul id="metadata-block">
+		{% for book in compare %}
+		<li>
+		    <a href="{% url bookreader-book book.pk %}">{{ book.title }}</a>
+		    <span class="book-desc">&nbsp;by {{ book.creator }} ({{ book.created }})</span>
+		</li>
+		{% endfor %}
+	</ul>
+	
+	<div class="visualClear">&nbsp;</div>
+	
+	{% for book in compare %}
+    
+    <div class="inline-filmstrip-metadata-block" id="{{ book.identifier|slugify }}{{ forloop.counter }}-metadata">
+        <div class="visualClear">&nbsp;</div>
+        <a href="{% url bookreader-book book.pk %}">{{ book.title }}</a>
+        <span class="book-desc">&nbsp;by {{ book.creator }} ({{ book.created }})</span>
+    </div>
+
+    <ul class="pages" id="{{ book.identifier|slugify }}{{ forloop.counter }}-pages">
+		{% for page in book.pages.all %}
+	    {% include "bookreader/filmstrip/facebox.html" %}
+		{% endfor %}
+	</ul>
+	{% endfor %}
+{% else %}
+<div class="error">No books were selected to compare</div>
+{% endif %}
+<div class="visualClear">&nbsp;</div>
+{% endblock %}

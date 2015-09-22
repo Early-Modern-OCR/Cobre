@@ -1,0 +1,12 @@
+{% extends "book_base.html" %}
+
+{% block breadcrumb %}{{ block.super }} &rarr; Edit Canonical/Work References{% endblock %}
+
+{% block main_content %}
+<form method="POST">{% csrf_token %}
+
+{{ form.as_p }}
+
+<input type="submit" value="Save" />
+</form>
+{% endblock %}

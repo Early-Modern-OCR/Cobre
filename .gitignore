@@ -1,0 +1,14 @@
+.svn/
+*.pyc
+src/bookreader/bookreader.egg-info/
+src/bookreader/build/
+src/bookreader/dist/
+.installed.cfg
+.mr.developer.cfg
+*lighty.conf
+bin/
+develop-eggs/
+eggs/
+parts/
+var/data.db
+.DS_Store

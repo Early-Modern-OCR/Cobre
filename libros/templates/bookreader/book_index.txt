@@ -1,0 +1,13 @@
+{{ object.title }}
+{{ object.creator }}
+{{ object.created }}
+{{ object.issued }}
+{{ object.collection.name }}
+{{ object.collection.repository.name }}
+{% if object.additional_metadata %}
+{% for key,values in object.additional_metadata.iterlists %}
+{% for value in values %}
+{{ value }}
+{% endfor %}
+{% endfor %}
+{% endif %}

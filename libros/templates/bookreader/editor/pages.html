@@ -1,0 +1,119 @@
+{% extends "book_base.html" %}
+{% block head_styles %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="/theme/css/facebox.css" />
+<link rel="stylesheet" type="text/css" href="/theme/css/jquery-ui-1.8.4.custom.css" />
+<link rel="stylesheet" type="text/css" href="/theme/css/filmstrip.css" />
+<link rel="stylesheet" type="text/css" href="/theme/css/editor.css" />
+{% endblock %}
+
+{% block column-class %} three-column{% endblock %}
+
+{% block head_javascript %}
+{{ block.super }}
+<script type="text/javascript" src="/theme/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/theme/js/facebox.min.js"></script>
+<!-- <script type="text/javascript" src="/theme/js/jquery.filmstrip.combined.min.js"></script> -->
+<script type="text/javascript" src="/theme/js/jquery.scrollTo-1.4.2.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.serialScroll.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="/theme/js/jquery.filmstrip.js"></script>
+<script type="text/javascript" src="/theme/js/tamulib.libros.editor.js"></script>
+{% endblock %}
+
+{% block breadcrumb %}{{ block.super }} &rarr; Edit Pages{% endblock %}
+
+{% block right_column %}
+<td id="portal-column-two">
+	<div class="visualPadding">
+		<div class="portlet portlet-right">
+			<h3>Book Information</h3>
+			<dl>
+				<dt>Total Pages</dt>
+				<dd class="numPages">###</dd>
+				<dt>Missing Pages</dt>
+				<dd class="numMissingPages">###</dd>
+			</dl>
+		</div>
+		<div class="portlet portlet-right">
+			<h3>Add/Remove Pages</h3>
+			<div class="filmstrip">
+				<ul id="contentSource">
+					<li class="newBlankPage"><div class="missingPage"><div>Page Missing</div></div></li>
+					<li class="newBlankPage syncPage"><div class="missingPage"><div>Sync Page</div></div></li>
+					<li class="trashCan"><div class="trashCan"><div>Delete Page</div><div class="trashCanIcon">&nbsp;</div></div></li>
+				</ul>
+				<div class="numberOfPagesInput"># of pages <input name="numberNewPages" type="text" size="3" value="1" /></div>
+			</div>
+			<ul class="visualClear">
+				<li class="hidden"><a href="{% url bookreader-editor-update-page-order book.pk %}" class="save_order">Save Now!</a></li>
+				<li class="hidden"><a href="{% url bookreader-editor-add-page book.pk %}" class="add_page">Add a new page</a></li>
+			</ul>
+		</div>
+		{% if book.canonical %}
+		<div class="portlet portlet-right" id="canonical">
+			<h3>Canonical Version</h3>
+			<h4>{{ book.canonical.title }}</h4>
+			<dl>
+				<dt>Title</dt>
+				<dd>{{ book.canonical.title }}</dd>
+				<dt>Pages</dt>
+				<dd class="canonicalNumPages">{{ book.canonical.internal_pages.count }}</dd>
+			</dl>
+			<ul class="visualClear">
+				<li><a href="{% url bookreader-editor-copy-annotations book.pk %}">Copy Annotations</a></li>
+			</ul>
+		</div>
+		{% endif %}
+	</div>
+</td>
+{% endblock %}
+
+{% block main_content %}
+	<h2>Interior Pages</h2>
+	<ul class="pages editing {{ book.type }}" id="{{ book.identifier|slugify }}-pages">
+		{% for page in book.internal_pages.all %}
+		{% include "bookreader/filmstrip/edit_page.html" %}
+		{% endfor %}
+	</ul>
+	{% if book.canonical %}
+	<ul class="pages canonical" id="{{ book.canonical.identifier|slugify }}-pages">
+		{% for page in book.canonical.internal_pages.all %}
+		{% include "bookreader/filmstrip/annotation.html" %}
+		{% endfor %}
+	</ul>
+	{% endif %}
+	{% if book.type == "canonical" and book.copies.all > 0 %}
+	{% for copy in book.copies.all %}
+	<ul class="pages copy" id="{{ copy.identifier|slugify }}-pages">
+		{% for page in copy.internal_pages.all %}
+		{% include "bookreader/filmstrip/edit_canonical_copy.html" %}
+		{% endfor %}
+	</ul>
+	{% endfor %}
+	{% endif %}
+	{% if book.type == "frankenbook" and book.work %}
+	{% for manifestation in book.work.manifestations.all %}
+		{% if manifestation.type == "extant" %}
+		<ul class="pages copy" id="{{ manifestation.identifier|slugify }}-pages">
+			{% for page in manifestation.internal_pages.all %}
+			{% include "bookreader/filmstrip/edit_canonical_copy.html" %}
+			{% endfor %}
+		</ul>
+		{% endif %}
+	{% endfor %}
+	{% endif %}
+	
+	<div id="annotations" class="visualClear">
+		<ul id="annotation_actions">
+			<li><a href="{% url bookreader-book-annotations book.pk %}" id="reload_annotations" title="Reload Annotations">Reload Annotations</a></li>
+			<li><a href="{% url bookreader-editor-add-annotation book.pk %}" id="add_annotation" title="Add an Annotation">Add an Annotation</a></li>
+			<li><a href="#" id="edit_annotations" class="edit_annotations" title="Edit Annotations">Edit Annotations</a></li>
+		</ul>
+		<h1><a href="#" class="annotation-toggle" title="Show/hide annotations">Annotations</a></h1>
+		<div id="annotationsWrapper">
+		{% include "bookreader/annotation/book.html" %}
+		<div class="visualClear">&nbsp;</div>
+		</div>
+	</div>
+{% endblock %}

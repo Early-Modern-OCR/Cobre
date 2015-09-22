@@ -1,0 +1,6 @@
+{% extends "bookreader/filmstrip/page.html" %}
+{% spaceless %}
+{% block missing_page_block %}
+<div class="missingPage"><div>{% if page.title %}{{ page.title }}{% else %}Page Missing{% endif %}</div></div>
+{% endblock %}
+{% endspaceless %}

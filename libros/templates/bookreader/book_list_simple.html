@@ -1,0 +1,47 @@
+{% load bookreader_djatoka %}
+{% load bookreader_compare %}
+
+{% if book_list %}
+	<ul id="book-list">
+    {% for book in book_list %}
+        <li class="book">
+        	<ul class="book-actions">
+        		{% if book.type != "work" %}
+        		<li><a href="{% url bookreader-book-add-compare book.pk %}" class="comparison" title="Add to comparison list">+</a></li>
+        		{% endif %}
+	        	{% for link in book.links.all %}
+				{% if link.mimetype == 'application/pdf' %}
+				<li><a href="{{ link.url }}" class="pdf-view" title="Download PDF ({{ link.size|filesizeformat }})">Download PDF</a></li>
+				{% endif %}
+				{% endfor %}
+        	</ul>
+        	<a href="{% url bookreader-book book.pk %}">{{ book.title }}</a>
+			<span class="book-desc">
+				by {{ book.creator }} ({{ book.created }})
+				{% if book.additional_metadata.publisher %} published by {{ book.additional_metadata.publisher }}{% endif %}
+			</span>
+		</li>	
+    {% endfor %}
+	</ul>
+	
+	{% if is_paginated %}
+	<div class="pagination">
+    	<span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+	</div>
+	{% endif %}
+{% else %}
+    <p class="callout">No books are available.</p>
+{% endif %}
+

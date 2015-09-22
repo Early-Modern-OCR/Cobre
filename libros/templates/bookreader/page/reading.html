@@ -1,0 +1,10 @@
+{% spaceless %}
+{% load bookreader_djatoka %}
+{% if page %}
+{% if page.jp2 %}
+<img alt="{{ page.safe_title }}" src="{% djatoka_resolver_url page.jp2 svc.scale=0,550 %}" class="page-image" id="page-image-{{ page.pk }}"/>
+{% else %}
+<div class="page-image missing-page">{{ page.safe_title|title }} is missing</div>
+{% endif %}
+{% endif %}
+{% endspaceless %}

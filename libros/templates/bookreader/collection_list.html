@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+
+{% block breadcrumb %}
+{# {% if repository %}<a href="{% url bookreader-repository repository.pk %}">{{ repository }}</a> &rarr;{% endif %} #}
+Collections
+{% endblock %}
+{% block main_heading %}<h1>Collections{% if repository %} in {{ repository.name }}{% endif %}</h1>{% endblock %}
+
+
+{% block main_content %}
+	{% if collection_list %}
+	<ul id="collections">
+		{% for collection in collection_list %}
+		<li>
+			<a href="{% url bookreader-collection collection.pk %}">{{ collection.name }}</a>
+			{% if collection.books.count %}<span class="book-count">({{ collection.books.count }} book{{ collection.books.count|pluralize }})</span>{% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	    <p class="callout">No collections are available.</p>
+	{% endif %}
+	
+{% endblock %}

@@ -1,0 +1,32 @@
+{% if annotation %}{% spaceless %}
+<li>
+	<a href="#{{ annotation.offset }}" id="annotation_{{ annotation.pk }}">
+		<span class="annotation-text">{{ annotation.text }} {% if annotation.local %}<div class="annotation-locality">(local)</div>{% endif %} </span>
+		<span class="annotation-pages">{% if annotation.end != annotation.offset %}{{ annotation.offset }}-{{ annotation.end }}{% else %}{{ annotation.offset }}{% endif %}</span>
+	</a>
+	{% if annotation.children and annotation.children|length > 0 %}
+	<ul>
+		{% for child in annotation.children %}
+		<li>
+			<a href="#{{ child.offset }}" id="annotation_{{ child.pk }}">
+				<span class="annotation-text">{{ child.text }}</span>
+				<span class="annotation-pages">{% if child.end != child.offset %}{{ child.offset }}-{{ child.end }}{% else %}{{ child.offset }}{% endif %}</span>
+			</a>
+			{% if child.children and child.children|length > 0 %}
+			<ul>
+				{% for subchild in child.children %}
+				<li>
+					<a href="#{{ subchild.offset }}" id="annotation_{{ subchild.pk }}">
+						<span class="annotation-text">{{ subchild.text }}</span>
+						<span class="annotation-pages">{% if subchild.end != subchild.offset %}{{ subchild.offset }}-{{ subchild.end }}{% else %}{{ subchild.offset }}{% endif %}</span>
+					</a>
+				</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+</li>
+{% endspaceless %}{% endif %}

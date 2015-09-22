@@ -1,0 +1,8 @@
+{% if collection %}
+<div class="option-group">
+	<h3>{{ collection.name }}</h3>
+	<ul>
+		<li><a href="{% url bookreader-collection object_id=collection.pk %}">Browse</a></li>
+	</ul>
+</div>
+{% endif %}

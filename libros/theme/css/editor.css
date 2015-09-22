@@ -1,0 +1,70 @@
+.portlet-right div.filmstrip {
+	padding-top: 15px;
+}
+
+.filmstrip ul li > .trashCan {
+	background: white url('/theme/imgs/sprite.filmstrip.png') no-repeat -169px 0;
+}
+
+#annotations {
+	clear: both;
+	padding-top: 15px;
+}
+
+#annotations h1 {
+	clear: none;
+}
+
+#annotation_actions {
+	display: block;
+	margin-top: 12px;
+}
+
+#annotation_actions li {
+	float: right;
+	padding: 0px 2px;
+}
+
+#annotation_actions li a {
+	background: transparent url('/theme/imgs/sprite.filmstrip.png') no-repeat -148px 0px;
+	width: 18px;
+	height: 18px;
+	text-indent: -9999px;
+	overflow: hidden;
+	display: block;
+}
+
+#annotation_actions li .edit_annotations {
+	background-position: -148px -132px;
+}
+
+#annotation_actions li .stop_editing_annotations {
+	background-position: -173px -132px;
+}
+#annotation_actions li #add_annotation {
+	background-position: -148px -88px;
+}
+#annotation_actions li #reload_annotations {
+	background-position: -148px -109px;
+}
+
+.filmstrip ul li * div.overlay {
+	position: relative;
+	background: black;
+	color: white;
+	top: -18px;
+	height: 18px;
+	width: 100%;
+	float: left;
+	padding: 0px;
+}
+
+.small ul li * div.overlay {
+	top: -8px;
+	height: 8px;
+}
+
+.large ul li * div.overlay {
+	top: -25px;
+	height: 25px;
+}

@@ -1,0 +1,34 @@
+{% extends "main.html" %}
+{% block breadcrumb %}Search{% endblock %}
+{% block main_heading %}Search for Books{% endblock %}
+
+{% block main_content %}
+
+<form name="search" method="get">
+{{ form.q }} <input type="submit" value="go" />
+{% for field in form %}
+{% if field.is_hidden %}
+{{ field }}
+{% endif %}
+{% endfor %}
+</form>
+
+{% if page and paginator.count %}
+<h2>Results</h2>
+<ul id="book-list">
+    {% for result in page.object_list %}
+    {% with result.object as book %}
+        <li class="book">
+        	<a href="{% url bookreader-book book.pk %}">{{ book.title }}</a>
+			<span class="book-desc">by {{ book.creator }} ({{ book.created }})</span>
+		</li>
+	{% endwith %}
+    {% endfor %}
+</ul>
+{% else %}
+{% if form.q.data %}
+<h2>No Results</h2>
+<p>Your search term, {{ form.q.data }}, did not locate any books.</p>
+{% endif %}
+{% endif %}
+{% endblock %}

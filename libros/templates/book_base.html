@@ -1,0 +1,63 @@
+{% extends "main.html" %}
+
+{% block breadcrumb %}
+{% if book %}
+<a href="{% url bookreader-book book.pk %}">{{ book.title|truncatewords:4 }}</a>
+{% endif %}
+{% endblock %}
+{% block main_heading %}<h1>{{ book.title }}</h1>{% endblock %}
+
+
+{% block left_column_content %}
+{{ block.super }}
+{% if book %}
+{% if book.type != "work" %}
+<div class="option-group">
+	<h3>{{ book.title }}</h3>
+	<ul>
+		<li><a href="{% url bookreader-book object_id=book.pk %}">Book Overview</a></li>
+		{% if book.type == "canonical" %}
+		<li><a href="{% url bookreader-book-canonical object_id=book.pk %}">Canonical View</a></li>
+		{% else %}
+		<li><a href="{% url bookreader-book-read object_id=book.pk %}">Start Reading View</a></li>
+		<li><a href="{% url bookreader-book-pages object_id=book.pk %}">Detailed View</a></li>
+		{% endif %}
+		<li><a href="{{ book.repository_url }}">View in Repository</a></li>
+		{% for link in book.links.all %}
+		{% if link.mimetype == 'application/pdf' %}
+		<li><a href="{{ link.url }}">Download PDF</a> ({{ link.size|filesizeformat }})</li>
+		{% endif %}
+		{% endfor %}
+		<li><a href="{% url bookreader-book-pdf book.pk %}">Compiled PDFs</a></li>
+		<li><a href="{% url bookreader-book-add-compare book.pk %}" class="comparison">Add to compare</a></li>
+		{% if book.work %}
+		<li><a href="{% url bookreader-book book.work.pk %}">See All Copies of Title</a></li>
+		{% endif %}
+		{% if book.canonical %}
+		<li><a href="{% url bookreader-book book.canonical.pk %}">Canonical Version</a></li>
+		{% endif %}
+	</ul>
+</div>
+{% endif %}
+{% if perms.bookreader.change_book %}
+<div class="option-group">
+	<h3>{{ book.title|truncatewords:2 }} Admin</h3>
+	<ul>
+		{% if book.type != "work" %}
+		<li><a href="{% url bookreader-editor-pages book.pk %}">Edit Internal Pages</a></li>
+		{% endif %}
+		{% if book.type != "work" and book.type != "canonical" %}
+		<li><a href="{% url bookreader-editor-exterior book.pk %}">Edit External Views</a></li>
+		{% endif %}
+		{% if not book.type == "work" %}
+		<li><a href="{% url bookreader-editor-references book.pk %}">Edit References</a></li>
+		{% endif %}
+		<li><a href="{% url bookreader-book-bitstream-metadata book.pk %}">Bitstream Metadata File</a></li>
+		{% if not book.published %}
+		<li><a href="{% url bookreader-publish-book book.pk %}">Publish</a></li>
+		{% endif %}
+	</ul>
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}

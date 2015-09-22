@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load bookreader_compare %}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>{% block title %}Digital Book Reader{% endblock %} :: Texas A&amp;M University Libraries</title>	
+		
+		{% block head_styles %}
+		<link rel="stylesheet" type="text/css" href="/theme/css/base.css" /> 
+		<link rel="stylesheet" type="text/css" href="/theme/css/library.css" />
+		<link rel="stylesheet" type="text/css" href="/theme/css/books.css" />
+		<link rel="stylesheet" type="text/css" media="print" href="/theme/css/print.css" />
+		<style type="text/css" media="all"> {% block custom_style %}{% endblock %} </style>
+		<!--[if IE]><link rel="stylesheet" type="text/css" href="/theme/css/IE-override.css" /><![endif]-->
+		{% endblock %}
+		
+		{% block head_javascript %}
+		<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+		<script type="text/javascript" src="/theme/js/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="/theme/js/tamulib.libros.js"></script>
+		<script type="text/javascript" src="/theme/js/tamulib.libros.comparisons.js"></script>
+		
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				window.tamulib.libros.comparisons.url = '{% url bookreader-book-compare-portlet %}';
+				window.tamulib.libros.comparisons.update_links();
+				
+				jQuery('.colophonWrapper ul').append('<li><a href="#" id="classicToggle">Toggle classic slider</a></li>');
+				
+				jQuery('#classicToggle').click(function(event) {
+					event.preventDefault();
+					jQuery('#portal-column-content').toggleClass('classic');
+				});
+			});
+		</script>
+		{% endblock %}
+		
+		<link rel="shortcut icon" type="image/x-icon" href="http://library.tamu.edu/favicon.ico" />
+		<link rel="home" href="http://libros.library.tamu.edu" title="Digital Books Home" />
+		<link rel="contents" href="http://libros.library.tamu.edu/sitemap.xml" title="Site Map" />
+		<link rel="search" href="http://libros.library.tamu.edu/search/" title="Search this site" />
+	</head>
+	<body class="section-help template-document_view{% block column-class %} {% if compare %}three-column{% else %}two-column{% endif %}{% endblock %}" dir="ltr">
+		<div id="visual-portal-wrapper">
+			<div id="portal-top">
+				{% spaceless %}
+				<div id="portal-header">
+					<a href="http://www.tamu.edu"><img src="/theme/imgs/banner-tamu.jpg" alt="Texas A&amp;M University" /></a>
+					<a href="http://library.tamu.edu"><img src="/theme/imgs/banner-library.jpg" alt="Texas A&amp;M University Libraries" /></a>
+					<a href="http://digital.library.tamu.edu"><img src="/theme/imgs/banner-dl.jpg" alt="TAMU Digital Libraries" /></a>
+				</div>
+				{% endspaceless %}
+				<div id="portal-breadcrumbs">
+					<span>&nbsp;</span>
+					<a href="http://digital.library.tamu.edu/">Digital Library</a>
+						<span class="breadcrumbSeparator"> &rarr; </span>
+					<a href="/">Digital Books</a>
+						<span class="breadcrumbSeparator"> &rarr; </span>
+					<span dir="ltr">
+						<span>{% block breadcrumb %}View Titles{% endblock %}</span>
+					</span>
+				</div>
+				<div id="portal-user">
+					{% if user.is_authenticated %}
+					Weclome, <span id="user_name">{{ user.first_name }} {{user.last_name }}</span>
+					<input type="hidden" id="current-user" user_id="{{ user.id }}" user_su="{{ user.is_superuser }}"/>
+					{% endif %}
+				</div>
+			</div>
+			<div class="visualClear" id="clear-space-before-wrapper-table"><!-- --></div>
+			<table id="portal-columns">
+				<tbody>
+					<tr>
+						<td id="portal-column-one">
+							<div class="visualPadding">
+								{% block left_column_content %}
+								<div class="option-group">
+									<h3>Explore</h3>
+									<ul>
+										<li><a href="{% url bookreader-work-list %}">Browse Titles</a></li>
+										<li><a href="{% url bookreader-book-list %}">Browse Books</a></li>
+										<!--<li><a href="{% url bookreader-collection-list %}">Browse Collections</a></li>-->
+										<!--<li><a href="{% url bookreader-repository-list %}">Browse Repositories</a></li> -->
+										<li><a href="{% url haystack-search %}">Search for Titles</a></li>
+										{% if perms.bookreader.add_book %}
+										<li><a href="{% url bookreader-add-book %}">Add a Book</a></li>
+										{% endif %}
+									</ul>
+								</div>
+												
+								<div class="option-group">
+									<h3>About</h3>
+									<ul>
+										<li><a href="/about/">Introduction</a></li>
+										<li><a href="/contact/">Contact Info</a></li>
+										{% if user.is_authenticated %}
+										<li><a href="{% url django.contrib.auth.views.logout %}">Logout</a></li>
+										{% else %}
+										<li><a href="{% url django.contrib.auth.views.login %}">Login</a></li>
+										{% endif %}
+									</ul>
+								</div>
+								<div class="option-group">
+									<h3>Roles</h3>
+									<ul>
+										<li>Viewer</li>
+										{% if user.is_authenticated %}
+										<li>Authenticated</li>
+										{% endif %}
+										{% if user.is_staff %}
+										<li>Stuff</li>
+										{% endif %}
+										{% if user.is_superuser %}
+										<li>Superuser</li>
+										{% endif %}
+										{% if perms.bookreader.add_transcription %}
+										<li>Transcriber</li>
+										{% endif %}
+									</ul>
+								</div>
+								{% endblock left_column_content %}
+								&nbsp;
+							</div>
+						</td>
+						<td id="portal-column-content">
+							<div>
+								<div id="region-content" class="documentContent">
+									<div id="content">
+										{% if messages %}
+										<ul class="messages">
+										    {% for message in messages %}
+										    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+										    {% endfor %}
+										</ul>
+										{% endif %}
+										{% block main_heading %}
+											<h1>Digital Books at Texas A&amp;M</h1>
+										{% endblock %}
+										{% block main_content %}
+											<h1>This area of the interwebs is not ready yet...</h1>
+											<p>Please check back again soon. I'm sure <i>someone</i> is working on it...</p>
+										{% endblock %}
+									</div>
+								</div>
+								<span id="contentBottomLeft"></span>
+								<span id="contentBottomRight"></span>
+								</div>
+							</div>
+						</td>
+						{% block right_column %}
+						{% if compare %}
+						<td id="portal-column-two">
+							<div class="visualPadding">
+							{% block right_column_content %}
+							{% include "bookreader/book_comparison_portlet.html" %}
+							{% endblock right_column_content %}
+							&nbsp;
+							</div>
+						</td>
+						{% endif %}
+						{% endblock %}
+					</tr>
+				</tbody>
+			</table>
+			<div class="visualClear" id="clear-space-before-footer"><!-- --></div>
+			<div id="portal-footer">
+				<span id="footer_title" class="footer_span">
+					News &amp; Events
+				</span>
+				<span id="footer_news_text" class="footer_span">
+					:: Library Voted Best in State	
+				</span>
+			</div>
+			<div id="portal-colophon">
+				<h3><a href="http://library.tamu.edu/giving">Giving to the Libraries</a></h3>
+				<div class="colophonWrapper">
+					<ul>
+						<li>
+							<a href="http://www.tamu.edu" title="Texas A&amp;M University">Texas A&amp;M University</a>
+						</li>
+						<li>
+							<a href="http://library.tamu.edu/about/employment-opportunities" title="Employment opportunities at the Texas A&amp;M University Libraries">Employment</a>
+						</li>
+						<li>
+							<a href="http://library.tamu.edu/services/request-forms/contact-webmaster" title="Contact the Library">Webmaster</a>
+						</li>
+						<li>
+							<a href="http://library.tamu.edu/about/general-information/legal-notices" title="Legal Notices">Legal</a>
+						</li>
+						<li>
+							<a href="http://tamucb.cb.docutek.com/vrlplus/vrleb_question_patron.asp?virtual_desk_id=1" title="Comments">Comments</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<script type="text/javascript">
+				//var pageTracker = _gat._getTracker("UA-2081851-12");
+				//pageTracker._trackPageview();
+			</script>
+				<div class="visualClear"><!-- --></div>
+		</div>
+	</body>
+</html>

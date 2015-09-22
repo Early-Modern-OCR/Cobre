@@ -1,0 +1,27 @@
+{% load bookreader_djatoka %}
+{% spaceless %}
+<li id="page_{{ page.pk }}"{% block additional_attributes %}{% endblock %}>
+	{% if page.jp2 %}
+	{% block exist_page_block %}
+	<a href="{% url bookreader-book-pages book.pk %}?sequence={{ page.sequence }}" title="{{ page.title }}">
+		<img alt="{{ page.title }}"
+			src="{% if page.thumbnail %}{{ page.thumbnail }}{% else %}{% djatoka_resolver_url page.jp2 svc.scale=75 %}{% endif %}"/>
+	</a>
+	{% endblock %}
+	{% else %}
+	{% spaceless %}
+	{% block missing_page_block %}
+	<div class="missingPage">
+		<div>
+		{% if page.title %}{{ page.title }}{% else %}
+		{% if page.internal %}Page #{{ page.sequence }}{% else %}
+		Page Missing
+		{% endif %}
+		{% endif %}
+		</div>
+	</div>
+	{% endblock %}
+	{% endspaceless %}
+	{% endif %}
+</li>
+{% endspaceless %}

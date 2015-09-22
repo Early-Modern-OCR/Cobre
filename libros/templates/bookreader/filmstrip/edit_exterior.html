@@ -1,0 +1,23 @@
+{% extends "bookreader/filmstrip/page.html" %}
+{% load bookreader_djatoka %}
+{% spaceless %}
+{% block additional_attributes %} class="exteriorPage"{% endblock %}
+{% block missing_page_block %}
+	<div class="missingPage" id="exterior_{{ page.title }}">
+		<div>
+		{% if page.title %}{{ page.title }}{% else %}
+		{% if page.internal %}Page #{{ page.sequence }}{% else %}
+		Page Missing
+		{% endif %}
+		{% endif %}
+		</div>
+	</div>
+{% endblock %}
+{% block exist_page_block %}
+	<div id="exterior_{{ page.title }}">
+		<img alt="{{ page.title }}"
+			src="{% if page.thumbnail %}{{ page.thumbnail }}{% else %}{% djatoka_resolver_url page.jp2 svc.scale=75 %}{% endif %}"/>
+		<div class="overlay">{{ page.title }}</div>
+	</div>
+	{% endblock %}
+{% endspaceless %}
